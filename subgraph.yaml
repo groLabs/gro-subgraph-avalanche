@@ -1,0 +1,98 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: dai1_0
+    network: avalanche
+    source:
+      address: "0x5e57e11483a3f60a76af3045303604522059da2a"
+      abi: dai1_0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - LogAddToWhitelist
+        - LogDebtRatios
+        - LogDeposit
+        - LogDepositLimit
+        - LogMigrate
+        - LogNewAllowance
+        - LogNewBouncer
+        - LogNewDebtRatio
+        - LogNewRewards
+        - LogNewStrategyHarvest
+        - LogNewVaultFee
+        - LogRemoveFromWhitelist
+        - LogStrategyAdded
+        - LogStrategyAddedToQueue
+        - LogStrategyMigrated
+        - LogStrategyRemovedFromQueue
+        - LogStrategyReported
+        - LogStrategyRevoked
+        - LogStrategyStatusUpdate
+        - LogStrategyUpdateMaxDebtPerHarvest
+        - LogStrategyUpdateMinDebtPerHarvest
+        - LogUpdateWithdrawalQueue
+        - LogWithdrawal
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: dai1_0
+          file: ./abis/dai1_0.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: LogAddToWhitelist(indexed address)
+          handler: handleLogAddToWhitelist
+        - event: LogDebtRatios(uint256[])
+          handler: handleLogDebtRatios
+        - event: LogDeposit(indexed address,uint256,uint256,uint256)
+          handler: handleLogDeposit
+        - event: LogDepositLimit(uint256)
+          handler: handleLogDepositLimit
+        - event: LogMigrate(address,address,uint256)
+          handler: handleLogMigrate
+        - event: LogNewAllowance(address,uint256)
+          handler: handleLogNewAllowance
+        - event: LogNewBouncer(address)
+          handler: handleLogNewBouncer
+        - event: LogNewDebtRatio(indexed address,uint256)
+          handler: handleLogNewDebtRatio
+        - event: LogNewRewards(address)
+          handler: handleLogNewRewards
+        - event: LogNewStrategyHarvest(bool,uint256)
+          handler: handleLogNewStrategyHarvest
+        - event: LogNewVaultFee(uint256)
+          handler: handleLogNewVaultFee
+        - event: LogRemoveFromWhitelist(indexed address)
+          handler: handleLogRemoveFromWhitelist
+        - event: LogStrategyAdded(indexed address,uint256,uint256,uint256)
+          handler: handleLogStrategyAdded
+        - event: LogStrategyAddedToQueue(indexed address)
+          handler: handleLogStrategyAddedToQueue
+        - event: LogStrategyMigrated(indexed address,indexed address)
+          handler: handleLogStrategyMigrated
+        - event: LogStrategyRemovedFromQueue(indexed address)
+          handler: handleLogStrategyRemovedFromQueue
+        - event: LogStrategyReported(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleLogStrategyReported
+        - event: LogStrategyRevoked(indexed address)
+          handler: handleLogStrategyRevoked
+        - event: LogStrategyStatusUpdate(indexed address,bool)
+          handler: handleLogStrategyStatusUpdate
+        - event: LogStrategyUpdateMaxDebtPerHarvest(indexed address,uint256)
+          handler: handleLogStrategyUpdateMaxDebtPerHarvest
+        - event: LogStrategyUpdateMinDebtPerHarvest(indexed address,uint256)
+          handler: handleLogStrategyUpdateMinDebtPerHarvest
+        - event: LogUpdateWithdrawalQueue(address[])
+          handler: handleLogUpdateWithdrawalQueue
+        - event: LogWithdrawal(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleLogWithdrawal
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/dai-1-0.ts
