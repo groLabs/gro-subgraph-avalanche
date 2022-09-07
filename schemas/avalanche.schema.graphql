@@ -1,0 +1,115 @@
+# Enums
+
+enum Token {
+  unknown
+  dai_e
+  usdc_e
+  usdt_e
+  groDAI_e_vault_v1_0
+  groUSDC_e_vault_v1_0
+  groUSDT_e_vault_v1_0
+  groDAI_e_vault_v1_7
+  groUSDC_e_vault_v1_7
+  groUSDT_e_vault_v1_7
+}
+
+enum TxType {
+  deposit
+  withdrawal
+  transfer_in
+  transfer_out
+  approval
+}
+
+# Entities
+
+# User
+type User @entity {
+  id: ID! # userAddress
+  timestamp: Int
+  transfers: [TransferTx!] @derivedFrom(field: "userAddress")
+  approvals: [ApprovalTx!] @derivedFrom(field: "ownerAddress")
+  totals: Totals! @derivedFrom(field: "userAddress")
+}
+
+# aggregated amounts for personal stats
+type Totals @entity {
+  id: ID! # userAddress
+  userAddress: User! # FK to User
+  amount_added_groDAI_e_v1_0: BigDecimal!
+  amount_added_groUSDC_e_v1_0: BigDecimal!
+  amount_added_groUSDT_e_v1_0: BigDecimal!
+  amount_added_groDAI_e_v1_7: BigDecimal!
+  amount_added_groUSDC_e_v1_7: BigDecimal!
+  amount_added_groUSDT_e_v1_7: BigDecimal!
+  amount_added_total: BigDecimal!
+  amount_removed_groDAI_e_v1_0: BigDecimal!
+  amount_removed_groUSDC_e_v1_0: BigDecimal!
+  amount_removed_groUSDT_e_v1_0: BigDecimal!
+  amount_removed_groDAI_e_v1_7: BigDecimal!
+  amount_removed_groUSDC_e_v1_7: BigDecimal!
+  amount_removed_groUSDT_e_v1_7: BigDecimal!
+  amount_removed_total: BigDecimal!
+  value_added_groDAI_e_v1_0: BigDecimal!
+  value_added_groUSDC_e_v1_0: BigDecimal!
+  value_added_groUSDT_e_v1_0: BigDecimal!
+  value_added_groDAI_e_v1_7: BigDecimal!
+  value_added_groUSDC_e_v1_7: BigDecimal!
+  value_added_groUSDT_e_v1_7: BigDecimal!
+  value_added_total: BigDecimal!
+  value_removed_groDAI_e_v1_0: BigDecimal!
+  value_removed_groUSDC_e_v1_0: BigDecimal!
+  value_removed_groUSDT_e_v1_0: BigDecimal!
+  value_removed_groDAI_e_v1_7: BigDecimal!
+  value_removed_groUSDC_e_v1_7: BigDecimal!
+  value_removed_groUSDT_e_v1_7: BigDecimal!
+  value_removed_total: BigDecimal!
+  net_value_groDAI_e_v1_0: BigDecimal!
+  net_value_groUSDC_e_v1_0: BigDecimal!
+  net_value_groUSDT_e_v1_0: BigDecimal!
+  net_value_groDAI_e_v1_7: BigDecimal!
+  net_value_groUSDC_e_v1_7: BigDecimal!
+  net_value_groUSDT_e_v1_7: BigDecimal!
+  net_value_total: BigDecimal!
+}
+
+# latest token price
+type Price @entity {
+  id: ID! #TBC (token contract? 0x for ETH)
+  pwrd: BigDecimal!
+  gvt: BigDecimal!
+  gro: BigDecimal!
+  weth: BigDecimal!
+}
+
+# gro protocol transfers, deposits & withdrawals
+type TransferTx @entity {
+  id: ID! # hash-logIndex(-in|-out)
+  contractAddress: Bytes!
+  block: Int! 
+  timestamp: Int!
+  hash: Bytes!
+  type: TxType!
+  token: Token!
+  userAddress: User!  # FK to User
+  fromAddress: Bytes!
+  toAddress: Bytes!
+  coinAmount: BigDecimal!
+  usdAmount: BigDecimal!
+  # factor: BigDecimal!
+}
+
+# gro protocol approvals
+type ApprovalTx @entity {
+  id: ID! # hash-logIndex
+  contractAddress: Bytes!
+  block: Int! 
+  timestamp: Int!
+  hash: Bytes!
+  type: TxType!
+  token: Token!
+  ownerAddress: User!  # FK to User
+  spenderAddress: Bytes
+  coinAmount: BigDecimal!
+  usdAmount: BigDecimal!
+}

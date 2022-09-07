@@ -1,0 +1,168 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+#********** Labs 1.0 **********************************************************
+  - kind: ethereum/contract
+    name: avaxdaivault_v1_0
+    network: {{network}}
+    source:
+      address: '{{AVAXDAIVault_v1_0_Address}}'
+      abi: VaultAdaptorMK2_v1_0
+      startBlock: {{AVAXDAIVault_v1_0_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Totals
+        - TransferTx
+        - ApprovalTx
+      abis:
+        - name: VaultAdaptorMK2_v1_0
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
+        - name: ERC20
+          file: ./abis/avalanche/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferDAI
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApprovalDAI
+      file: ./src/mappings/labs1_0.ts
+  - kind: ethereum/contract
+    name: avaxusdcvault_v1_0
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDCVault_v1_0_Address}}'
+      abi: VaultAdaptorMK2_v1_0
+      startBlock: {{AVAXUSDCVault_v1_0_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Totals
+        - TransferTx
+        - ApprovalTx
+      abis:
+        - name: VaultAdaptorMK2_v1_0
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
+        - name: ERC20
+          file: ./abis/avalanche/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferUSDC
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApprovalUSDC
+      file: ./src/mappings/labs1_0.ts
+  - kind: ethereum/contract
+    name: avaxusdtvault_v1_0
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDTVault_v1_0_Address}}'
+      abi: VaultAdaptorMK2_v1_0
+      startBlock: {{AVAXUSDTVault_v1_0_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Totals
+        - TransferTx
+        - ApprovalTx
+      abis:
+        - name: VaultAdaptorMK2_v1_0
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
+        - name: ERC20
+          file: ./abis/avalanche/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferUSDT
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApprovalUSDT
+      file: ./src/mappings/labs1_0.ts
+#********** Labs 1.7 **********************************************************
+  - kind: ethereum/contract
+    name: avaxdaivault_v1_7
+    network: {{network}}
+    source:
+      address: '{{AVAXDAIVault_v1_7_Address}}'
+      abi: VaultAdaptorMK2_v1_7
+      startBlock: {{AVAXDAIVault_v1_7_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Totals
+        - TransferTx
+        - ApprovalTx
+      abis:
+        - name: VaultAdaptorMK2_v1_7
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
+        - name: ERC20
+          file: ./abis/avalanche/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferDAI
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApprovalDAI
+      file: ./src/mappings/labs1_7.ts
+  - kind: ethereum/contract
+    name: avaxusdcvault_v1_7
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDCVault_v1_7_Address}}'
+      abi: VaultAdaptorMK2_v1_7
+      startBlock: {{AVAXUSDCVault_v1_7_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Totals
+        - TransferTx
+        - ApprovalTx
+      abis:
+        - name: VaultAdaptorMK2_v1_7
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
+        - name: ERC20
+          file: ./abis/avalanche/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferUSDC
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApprovalUSDC
+      file: ./src/mappings/labs1_7.ts
+  - kind: ethereum/contract
+    name: avaxusdtvault_v1_7
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDTVault_v1_7_Address}}'
+      abi: VaultAdaptorMK2_v1_7
+      startBlock: {{AVAXUSDTVault_v1_7_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Totals
+        - TransferTx
+        - ApprovalTx
+      abis:
+        - name: VaultAdaptorMK2_v1_7
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
+        - name: ERC20
+          file: ./abis/avalanche/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferUSDT
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApprovalUSDT
+      file: ./src/mappings/labs1_7.ts
