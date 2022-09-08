@@ -16,6 +16,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - User
+        - Price
         - Totals
         - TransferTx
         - ApprovalTx
@@ -29,7 +30,16 @@ dataSources:
           handler: handleTransferDAI
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApprovalDAI
-      file: ./src/mappings/labs1_0.ts
+        - event: LogDeposit(indexed address,uint256,uint256,uint256)
+          handler: handleDepositDAI
+        - event: LogWithdrawal(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleWithdrawalDAI
+        - event: LogStrategyReported(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStrategyReportedDAI
+        - event: LogNewStrategyHarvest(bool,uint256)
+          handler: handleNewStrategyHarvestDAI
+
+      file: ./src/mappings/labs_v1_0.ts
   - kind: ethereum/contract
     name: avaxusdcvault_v1_0
     network: {{network}}
@@ -43,6 +53,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - User
+        - Price
         - Totals
         - TransferTx
         - ApprovalTx
@@ -56,7 +67,15 @@ dataSources:
           handler: handleTransferUSDC
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApprovalUSDC
-      file: ./src/mappings/labs1_0.ts
+        - event: LogDeposit(indexed address,uint256,uint256,uint256)
+          handler: handleDepositUSDC
+        - event: LogWithdrawal(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleWithdrawalUSDC
+        - event: LogStrategyReported(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStrategyReportedUSDC
+        - event: LogNewStrategyHarvest(bool,uint256)
+          handler: handleNewStrategyHarvestUSDC
+      file: ./src/mappings/labs_v1_0.ts
   - kind: ethereum/contract
     name: avaxusdtvault_v1_0
     network: {{network}}
@@ -70,6 +89,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - User
+        - Price
         - Totals
         - TransferTx
         - ApprovalTx
@@ -83,7 +103,15 @@ dataSources:
           handler: handleTransferUSDT
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApprovalUSDT
-      file: ./src/mappings/labs1_0.ts
+        - event: LogDeposit(indexed address,uint256,uint256,uint256)
+          handler: handleDepositUSDT
+        - event: LogWithdrawal(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleWithdrawalUSDT
+        - event: LogStrategyReported(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStrategyReportedUSDT
+        - event: LogNewStrategyHarvest(bool,uint256)
+          handler: handleNewStrategyHarvestUSDT
+      file: ./src/mappings/labs_v1_0.ts
 #********** Labs 1.7 **********************************************************
   - kind: ethereum/contract
     name: avaxdaivault_v1_7
@@ -98,6 +126,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - User
+        - Price
         - Totals
         - TransferTx
         - ApprovalTx
@@ -111,7 +140,15 @@ dataSources:
           handler: handleTransferDAI
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApprovalDAI
-      file: ./src/mappings/labs1_7.ts
+        - event: LogDeposit(indexed address,uint256,uint256,uint256)
+          handler: handleDepositDAI
+        - event: LogWithdrawal(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleWithdrawalDAI
+        - event: LogStrategyReported(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStrategyReportedDAI
+        - event: LogNewStrategyHarvest(bool,uint256)
+          handler: handleNewStrategyHarvestDAI
+      file: ./src/mappings/labs_v1_7.ts
   - kind: ethereum/contract
     name: avaxusdcvault_v1_7
     network: {{network}}
@@ -125,6 +162,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - User
+        - Price
         - Totals
         - TransferTx
         - ApprovalTx
@@ -138,7 +176,15 @@ dataSources:
           handler: handleTransferUSDC
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApprovalUSDC
-      file: ./src/mappings/labs1_7.ts
+        - event: LogDeposit(indexed address,uint256,uint256,uint256)
+          handler: handleDepositUSDC
+        - event: LogWithdrawal(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleWithdrawalUSDC
+        - event: LogStrategyReported(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStrategyReportedUSDC
+        - event: LogNewStrategyHarvest(bool,uint256)
+          handler: handleNewStrategyHarvestUSDC
+      file: ./src/mappings/labs_v1_7.ts
   - kind: ethereum/contract
     name: avaxusdtvault_v1_7
     network: {{network}}
@@ -152,6 +198,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - User
+        - Price
         - Totals
         - TransferTx
         - ApprovalTx
@@ -165,4 +212,146 @@ dataSources:
           handler: handleTransferUSDT
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApprovalUSDT
-      file: ./src/mappings/labs1_7.ts
+        - event: LogDeposit(indexed address,uint256,uint256,uint256)
+          handler: handleDepositUSDT
+        - event: LogWithdrawal(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleWithdrawalUSDT
+        - event: LogStrategyReported(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleStrategyReportedUSDT
+        - event: LogNewStrategyHarvest(bool,uint256)
+          handler: handleNewStrategyHarvestUSDT
+      file: ./src/mappings/labs_v1_7.ts
+#********** Strats 1.0 **********************************************************
+  - kind: ethereum/contract
+    name: avaxdaistrategy_v1_0
+    network: {{network}}
+    source:
+      address: '{{AVAXDAIStrategy_v1_0_Address}}'
+      abi: AHv2Farmer_v1_0
+      startBlock: {{AVAXDAIStrategy_v1_0_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Price
+      abis:
+        - name: AHv2Farmer_v1_0
+          file: ./abis/avalanche/AHv2Farmer_v1_0.json
+        - name: VaultAdaptorMK2_v1_0
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
+      eventHandlers:
+        - event: Harvested(uint256,uint256,uint256,uint256)
+          handler: handleHarvestedDAI
+      file: ./src/mappings/strats_v1_0.ts
+  - kind: ethereum/contract
+    name: avaxusdcstrategy_v1_0
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDCStrategy_v1_0_Address}}'
+      abi: AHv2Farmer_v1_0
+      startBlock: {{AVAXUSDCStrategy_v1_0_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Price
+      abis:
+        - name: AHv2Farmer_v1_0
+          file: ./abis/avalanche/AHv2Farmer_v1_0.json
+        - name: VaultAdaptorMK2_v1_0
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
+      eventHandlers:
+        - event: Harvested(uint256,uint256,uint256,uint256)
+          handler: handleHarvestedUSDC
+      file: ./src/mappings/strats_v1_0.ts
+  - kind: ethereum/contract
+    name: avaxusdtstrategy_v1_0
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDTStrategy_v1_0_Address}}'
+      abi: AHv2Farmer_v1_0
+      startBlock: {{AVAXUSDTStrategy_v1_0_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Price
+      abis:
+        - name: AHv2Farmer_v1_0
+          file: ./abis/avalanche/AHv2Farmer_v1_0.json
+        - name: VaultAdaptorMK2_v1_0
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
+      eventHandlers:
+        - event: Harvested(uint256,uint256,uint256,uint256)
+          handler: handleHarvestedUSDT
+      file: ./src/mappings/strats_v1_0.ts
+#********** Strats 1.7 **********************************************************
+  - kind: ethereum/contract
+    name: avaxdaistrategy_v1_7
+    network: {{network}}
+    source:
+      address: '{{AVAXDAIStrategy_v1_7_Address}}'
+      abi: AHv2Farmer_v1_7
+      startBlock: {{AVAXDAIStrategy_v1_7_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Price
+      abis:
+        - name: AHv2Farmer_v1_7
+          file: ./abis/avalanche/AHv2Farmer_v1_7.json
+        - name: VaultAdaptorMK2_v1_7
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
+      eventHandlers:
+        - event: LogHarvested(uint256,uint256,uint256,uint256)
+          handler: handleLogHarvestedDAI
+      file: ./src/mappings/strats_v1_7.ts
+  - kind: ethereum/contract
+    name: avaxusdcstrategy_v1_7
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDCStrategy_v1_7_Address}}'
+      abi: AHv2Farmer_v1_7
+      startBlock: {{AVAXUSDCStrategy_v1_7_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Price
+      abis:
+        - name: AHv2Farmer_v1_7
+          file: ./abis/avalanche/AHv2Farmer_v1_7.json
+        - name: VaultAdaptorMK2_v1_7
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
+      eventHandlers:
+        - event: LogHarvested(uint256,uint256,uint256,uint256)
+          handler: handleLogHarvestedUSDC
+      file: ./src/mappings/strats_v1_7.ts
+  - kind: ethereum/contract
+    name: avaxusdtstrategy_v1_7
+    network: {{network}}
+    source:
+      address: '{{AVAXUSDTStrategy_v1_7_Address}}'
+      abi: AHv2Farmer_v1_7
+      startBlock: {{AVAXUSDTStrategy_v1_7_StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Price
+      abis:
+        - name: AHv2Farmer_v1_7
+          file: ./abis/avalanche/AHv2Farmer_v1_7.json
+        - name: VaultAdaptorMK2_v1_7
+          file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
+      eventHandlers:
+        - event: LogHarvested(uint256,uint256,uint256,uint256)
+          handler: handleLogHarvestedUSDT
+      file: ./src/mappings/strats_v1_7.ts

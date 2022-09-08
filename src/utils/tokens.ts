@@ -47,8 +47,9 @@ function tokenToDecimal(
 }
 
 // Retrieves price per share for a given token
+// @dev: switch statement can't be used (i.e.: Cannot redeclare block-scoped variable 'contract')
 const getPricePerShare = (token: string): BigDecimal[] => {
-
+//TODO: replace by switch statement
     if (token === 'groDAI_e_vault_v1_0') {
         const contract = dai_v1_0.bind(VAULT_DAI_v1_0_ADDRESS);
         return callPricePerShare(contract, token);

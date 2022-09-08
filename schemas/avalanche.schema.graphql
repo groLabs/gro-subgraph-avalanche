@@ -75,11 +75,13 @@ type Totals @entity {
 
 # latest token price
 type Price @entity {
-  id: ID! #TBC (token contract? 0x for ETH)
-  pwrd: BigDecimal!
-  gvt: BigDecimal!
-  gro: BigDecimal!
-  weth: BigDecimal!
+  id: ID!
+  groDAI_e_v1_0: BigDecimal!
+  groUSDC_e_v1_0: BigDecimal!
+  groUSDT_e_v1_0: BigDecimal!
+  groDAI_e_v1_7: BigDecimal!
+  groUSDC_e_v1_7: BigDecimal!
+  groUSDT_e_v1_7: BigDecimal!
 }
 
 # gro protocol transfers, deposits & withdrawals
