@@ -97,6 +97,8 @@ type TransferTx @entity {
   coinAmount: BigDecimal!
   usdAmount: BigDecimal!
   # factor: BigDecimal!
+  currentPricePerShare: BigDecimal!
+  estimatedPricePerShare: BigDecimal!
 }
 
 # gro protocol approvals

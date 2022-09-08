@@ -40,8 +40,9 @@ export const setTransferTx = (
     tx.fromAddress = ev.fromAddress;
     tx.toAddress = ev.toAddress;
     tx.coinAmount = coinAmount.truncate(DECIMALS);
-    tx.usdAmount = coinAmount.times(pricePerShare).truncate(DECIMALS);
-
+    tx.usdAmount = coinAmount.times(pricePerShare[2]).truncate(DECIMALS);
+    tx.currentPricePerShare = pricePerShare[0].truncate(DECIMALS);
+    tx.estimatedPricePerShare = pricePerShare[1].truncate(DECIMALS);
 
     tx.save();
     return tx;
