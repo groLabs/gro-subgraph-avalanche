@@ -23,5 +23,24 @@
     "USDC_e_Address": "0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664",
     "USDC_e_StartBlock": 7726393,
     "USDT_e_Address": "0xc7198437980c041c805A1EDcbA50c1Ce5db95118",
-    "USDT_e_StartBlock": 7726393
+    "USDT_e_StartBlock": 7726393,
+    "AVAXDAIStrategy_v1_0_Address": "0x4c7EA5b8032C5Ea82DdF617DAc7972c70E0c0478",
+    "AVAXDAIStrategy_v1_0_StartBlock": 7727050,
+    "AVAXUSDCStrategy_v1_0_Address": "0x247AF6E106549033d3a65354fC3A72FF3794FA99",
+    "AVAXUSDCStrategy_v1_0_StartBlock": 7726462,
+    "AVAXUSDTStrategy_v1_0_Address": "0x94a7c3419504ceA9FbA06eE739717B236Ada0638",
+    "AVAXUSDTStrategy_v1_0_StartBlock": 7726836,
+    "AVAXDAIStrategy_v1_7_Address": "0x670EA3f675a332D561d5a9ECaa16c097Ac0b0ba5",
+    "AVAXDAIStrategy_v1_7_StartBlock": 10364128,
+    "AVAXUSDCStrategy_v1_7_Address": "0xa797C615FC49a39363FdFA3398E8D524756E9a13",
+    "AVAXUSDCStrategy_v1_7_StartBlock": 10363748,
+    "AVAXUSDTStrategy_v1_7_Address": "0x370e6e9cd875db40293f9dba86361ca7ff399b63",
+    "AVAXUSDTStrategy_v1_7_StartBlock": 10363984,
+    "AVAXDAIStrategy_v1_9_internal_Address": "0xCfd28f3afB79380eC6cD759F76eA0a5c5b56A9aC",
+    "AVAXDAIStrategy_v1_9_internal_StartBlock": 12832319,
+    "AVAXUSDCStrategy_v1_9_internal_Address": "0xECBA3778357a7A448810D1D9a67025cD9BAf169A",
+    "AVAXUSDCStrategy_v1_9_internal_StartBlock": 12832007,
+    "AVAXUSDTStrategy_v1_9_internal_Address": "0x7053CdCfe9A6f8DB99768734939fCD6672470158",
+    "AVAXUSDTStrategy_v1_9_internal_StartBlock": 12832095
+
   }
