@@ -71,6 +71,12 @@ type Totals @entity {
   net_value_groUSDC_e_v1_7: BigDecimal!
   net_value_groUSDT_e_v1_7: BigDecimal!
   net_value_total: BigDecimal!
+  net_amount_groDAI_e_v1_0: BigDecimal!
+  net_amount_groUSDC_e_v1_0: BigDecimal!
+  net_amount_groUSDT_e_v1_0: BigDecimal!
+  net_amount_groDAI_e_v1_7: BigDecimal!
+  net_amount_groUSDC_e_v1_7: BigDecimal!
+  net_amount_groUSDT_e_v1_7: BigDecimal!
 }
 
 # latest token price
@@ -84,7 +90,7 @@ type Price @entity {
   groUSDT_e_v1_7: BigDecimal!
 }
 
-# gro protocol transfers, deposits & withdrawals
+# vault transfers between users
 type TransferTx @entity {
   id: ID! # hash-logIndex(-in|-out)
   contractAddress: Bytes!
@@ -98,12 +104,11 @@ type TransferTx @entity {
   toAddress: Bytes!
   coinAmount: BigDecimal!
   usdAmount: BigDecimal!
-  # factor: BigDecimal!
   currentPricePerShare: BigDecimal!
   estimatedPricePerShare: BigDecimal!
 }
 
-# gro protocol approvals
+# vault approvals
 type ApprovalTx @entity {
   id: ID! # hash-logIndex
   contractAddress: Bytes!

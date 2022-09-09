@@ -7,8 +7,6 @@ import { VaultAdaptorMK2_v1_7 as usdc_v1_7 } from '../../generated/avaxusdcvault
 import { VaultAdaptorMK2_v1_7 as usdt_v1_7 } from '../../generated/avaxusdtvault_v1_7/VaultAdaptorMK2_v1_7';
 import {
     log,
-    Address,
-    BigInt,
     BigDecimal,
 } from '@graphprotocol/graph-ts';
 import {
@@ -74,7 +72,7 @@ function callPricePerShare<T>(contract: T, token: string): BigDecimal {
             const base = token.includes('DAI')
                 ? 18
                 : 6;
-            return tokenToDecimal(pps.value, base, 0);
+            return tokenToDecimal(pps.value, base, 6);
         }
     } else {
         log.error('src/setters/price.ts->callPricePerShare(): no contract found', []);
