@@ -28,27 +28,54 @@ import {
   LogStrategyReported as usdt1_0_StrategyReportedEvent,
   LogNewStrategyHarvest as usdt1_0_NewStrategyHarvestEvent,
 } from '../../generated/avaxusdtstrategy_v1_0/VaultAdaptorMK2_v1_0';
+
 import { parseApprovalEvent } from '../parsers/approval';
-import { manageApproval } from '../managers/approvals';
 import { parseTransferEvent } from '../parsers/transfer';
+import { parseDepositEvent } from '../parsers/deposit';
+import { parseWithdrawalEvent } from '../parsers/withdrawal';
+
+import { manageApproval } from '../managers/approvals';
 import { manageTransfer } from '../managers/transfers';
+import { manageDeposit } from '../managers/deposits';
+import { manageWithdrawal } from '../managers/withdrawals';
+
 import { setLatestPrice } from '../setters/price';
+import { isDepositOrWithdrawal} from '../utils/contracts';
+
 
 // Transfers
 
 export function handleTransferDAI(event: dai1_0_TransferEvent): void {
-  const ev = parseTransferEvent(event);
-  manageTransfer(ev, 'groDAI_e_vault_v1_0');
+  if (!isDepositOrWithdrawal(
+    event.params.from,
+    event.params.to,
+    event.address
+  )) {
+    const ev = parseTransferEvent(event);
+    manageTransfer(ev, 'groDAI_e_vault_v1_0');
+  }
 }
 
 export function handleTransferUSDC(event: usdc1_0_TransferEvent): void {
-  const ev = parseTransferEvent(event);
-  manageTransfer(ev, 'groUSDC_e_vault_v1_0');
+  if (!isDepositOrWithdrawal(
+    event.params.from,
+    event.params.to,
+    event.address
+  )) {
+    const ev = parseTransferEvent(event);
+    manageTransfer(ev, 'groUSDC_e_vault_v1_0');
+  }
 }
 
 export function handleTransferUSDT(event: usdt1_0_TransferEvent): void {
-  const ev = parseTransferEvent(event);
-  manageTransfer(ev, 'groUSDT_e_vault_v1_0');
+  if (!isDepositOrWithdrawal(
+    event.params.from,
+    event.params.to,
+    event.address
+  )) {
+    const ev = parseTransferEvent(event);
+    manageTransfer(ev, 'groUSDT_e_vault_v1_0');
+  }
 }
 
 // Approvals
@@ -72,28 +99,40 @@ export function handleApprovalUSDT(event: usdt1_0_ApprovalEvent): void {
 
 export function handleDepositDAI(event: dai1_0_DepositEvent): void {
   setLatestPrice('groDAI_e_vault_v1_0');
+  const ev = parseDepositEvent(event);
+  manageDeposit(ev, 'groDAI_e_vault_v1_0');
 }
 
 export function handleDepositUSDC(event: usdc1_0_DepositEvent): void {
   setLatestPrice('groUSDC_e_vault_v1_0');
+  const ev = parseDepositEvent(event);
+  manageDeposit(ev, 'groUSDC_e_vault_v1_0');
 }
 
 export function handleDepositUSDT(event: usdt1_0_DepositEvent): void {
   setLatestPrice('groUSDT_e_vault_v1_0');
+  const ev = parseDepositEvent(event);
+  manageDeposit(ev, 'groUSDT_e_vault_v1_0');
 }
 
 // Withdrawals
 
 export function handleWithdrawalDAI(event: dai1_0_WithdrawalEvent): void {
   setLatestPrice('groDAI_e_vault_v1_0');
+  const ev = parseWithdrawalEvent(event);
+  manageWithdrawal(ev, 'groDAI_e_vault_v1_0');
 }
 
 export function handleWithdrawalUSDC(event: usdc1_0_WithdrawalEvent): void {
   setLatestPrice('groUSDC_e_vault_v1_0');
+  const ev = parseWithdrawalEvent(event);
+  manageWithdrawal(ev, 'groUSDC_e_vault_v1_0');
 }
 
 export function handleWithdrawalUSDT(event: usdt1_0_WithdrawalEvent): void {
   setLatestPrice('groUSDT_e_vault_v1_0');
+  const ev = parseWithdrawalEvent(event);
+  manageWithdrawal(ev, 'groUSDT_e_vault_v1_0');
 }
 
 // Strategy Reported
