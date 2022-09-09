@@ -53,10 +53,10 @@ export const setLatestPrice = (token: string): void => {
         price.groDAI_e_v1_7 = callPricePerShare(contract, token);
     } else if (token === 'groUSDC_e_vault_v1_7') {
         const contract = usdc_v1_7.bind(VAULT_USDC_v1_7_ADDRESS);
-        price.groDAI_e_v1_7 = callPricePerShare(contract, token);
+        price.groUSDC_e_v1_7 = callPricePerShare(contract, token);
     } else if (token === 'groUSDT_e_vault_v1_7') {
         const contract = usdt_v1_7.bind(VAULT_USDT_v1_7_ADDRESS);
-        price.groDAI_e_v1_7 = callPricePerShare(contract, token);
+        price.groUSDT_e_v1_7 = callPricePerShare(contract, token);
     } else {
         log.error('src/setters/price.ts->setLatestPrice(): no gro token found', []);
     }
