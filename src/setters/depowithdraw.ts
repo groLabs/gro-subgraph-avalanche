@@ -1,11 +1,11 @@
 import { Bytes } from '@graphprotocol/graph-ts';
 import { TransferTx } from '../../generated/schema';
-import { tokenToDecimal } from '../utils/tokens';
 import { DepoWithdraw } from '../types/depowithdraw';
 import {
-    ZERO,
-    DECIMALS
-} from '../utils/constants';
+    tokenToDecimal,
+    getPricePerShare,
+} from '../utils/tokens';
+import { DECIMALS } from '../utils/constants';
 
 
 export const setDepoWithdrawTx = (
@@ -19,6 +19,7 @@ export const setDepoWithdrawTx = (
         : 6;
     const coinAmount = tokenToDecimal(ev.coinAmount, base, DECIMALS);
     const usdAmount = tokenToDecimal(ev.usdAmount, base, DECIMALS);
+    const pricePerShare = getPricePerShare(token);
 
     tx.contractAddress = ev.contractAddress;
     tx.block = ev.block;
@@ -31,8 +32,8 @@ export const setDepoWithdrawTx = (
     tx.toAddress = ev.toAddress;
     tx.coinAmount = coinAmount;
     tx.usdAmount = usdAmount;
-    tx.currentPricePerShare = ZERO; //TODO: TBC -> pricePerShare[0].truncate(DECIMALS);
-    tx.estimatedPricePerShare = ZERO; //TODO: TBC ->  pricePerShare[1].truncate(DECIMALS);
+    tx.currentPricePerShare = pricePerShare[0].truncate(DECIMALS);
+    tx.estimatedPricePerShare = pricePerShare[1].truncate(DECIMALS);
 
     tx.save();
     return tx;

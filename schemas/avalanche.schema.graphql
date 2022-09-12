@@ -36,6 +36,7 @@ type User @entity {
 type Totals @entity {
   id: ID! # userAddress
   userAddress: User! # FK to User
+  # Coin amounts
   amount_added_groDAI_e_v1_0: BigDecimal!
   amount_added_groUSDC_e_v1_0: BigDecimal!
   amount_added_groUSDT_e_v1_0: BigDecimal!
@@ -50,6 +51,13 @@ type Totals @entity {
   amount_removed_groUSDC_e_v1_7: BigDecimal!
   amount_removed_groUSDT_e_v1_7: BigDecimal!
   amount_removed_total: BigDecimal!
+  net_amount_groDAI_e_v1_0: BigDecimal!
+  net_amount_groUSDC_e_v1_0: BigDecimal!
+  net_amount_groUSDT_e_v1_0: BigDecimal!
+  net_amount_groDAI_e_v1_7: BigDecimal!
+  net_amount_groUSDC_e_v1_7: BigDecimal!
+  net_amount_groUSDT_e_v1_7: BigDecimal!
+  # USD value
   value_added_groDAI_e_v1_0: BigDecimal!
   value_added_groUSDC_e_v1_0: BigDecimal!
   value_added_groUSDT_e_v1_0: BigDecimal!
@@ -71,12 +79,7 @@ type Totals @entity {
   net_value_groUSDC_e_v1_7: BigDecimal!
   net_value_groUSDT_e_v1_7: BigDecimal!
   net_value_total: BigDecimal!
-  net_amount_groDAI_e_v1_0: BigDecimal!
-  net_amount_groUSDC_e_v1_0: BigDecimal!
-  net_amount_groUSDT_e_v1_0: BigDecimal!
-  net_amount_groDAI_e_v1_7: BigDecimal!
-  net_amount_groUSDC_e_v1_7: BigDecimal!
-  net_amount_groUSDT_e_v1_7: BigDecimal!
+
 }
 
 # latest token price
