@@ -43,14 +43,12 @@ type Totals @entity {
   amount_added_groDAI_e_v1_7: BigDecimal!
   amount_added_groUSDC_e_v1_7: BigDecimal!
   amount_added_groUSDT_e_v1_7: BigDecimal!
-  amount_added_total: BigDecimal!
   amount_removed_groDAI_e_v1_0: BigDecimal!
   amount_removed_groUSDC_e_v1_0: BigDecimal!
   amount_removed_groUSDT_e_v1_0: BigDecimal!
   amount_removed_groDAI_e_v1_7: BigDecimal!
   amount_removed_groUSDC_e_v1_7: BigDecimal!
   amount_removed_groUSDT_e_v1_7: BigDecimal!
-  amount_removed_total: BigDecimal!
   net_amount_groDAI_e_v1_0: BigDecimal!
   net_amount_groUSDC_e_v1_0: BigDecimal!
   net_amount_groUSDT_e_v1_0: BigDecimal!

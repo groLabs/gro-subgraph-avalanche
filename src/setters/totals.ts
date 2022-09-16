@@ -14,14 +14,12 @@ const initTotals = (userAddress: string): Totals => {
         total.amount_added_groDAI_e_v1_7 = ZERO;
         total.amount_added_groUSDC_e_v1_7 = ZERO;
         total.amount_added_groUSDT_e_v1_7 = ZERO;
-        total.amount_added_total = ZERO;
         total.amount_removed_groDAI_e_v1_0 = ZERO;
         total.amount_removed_groUSDC_e_v1_0 = ZERO;
         total.amount_removed_groUSDT_e_v1_0 = ZERO;
         total.amount_removed_groDAI_e_v1_7 = ZERO;
         total.amount_removed_groUSDC_e_v1_7 = ZERO;
         total.amount_removed_groUSDT_e_v1_7 = ZERO;
-        total.amount_removed_total = ZERO;
         total.value_added_groDAI_e_v1_0 = ZERO;
         total.value_added_groUSDC_e_v1_0 = ZERO;
         total.value_added_groUSDT_e_v1_0 = ZERO;
@@ -108,7 +106,6 @@ export const setTotals = (
             total.net_value_groUSDT_e_v1_7 = total.net_value_groUSDT_e_v1_7.plus(usdAmount);
         }
 
-        total.amount_added_total = total.amount_added_total.plus(coinAmount);
         total.value_added_total = total.value_added_total.plus(usdAmount);
         total.net_value_total = total.net_value_total.plus(usdAmount);
 
@@ -158,7 +155,6 @@ export const setTotals = (
             total.net_value_groUSDT_e_v1_7 = total.net_value_groUSDT_e_v1_7.minus(usdAmount);
         }
 
-        total.amount_removed_total = total.amount_removed_total.plus(coinAmount);
         total.value_removed_total = total.value_removed_total.plus(usdAmount);
         total.net_value_total = total.net_value_total.minus(usdAmount);
     }
