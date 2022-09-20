@@ -1,5 +1,5 @@
 {
-  "name": "gro-avax-test",
+  "name": "gro-subgraph-avax",
   "license": "UNLICENSED",
   "scripts": {
     "avax-test": "SCOPE=test BLOCKCHAIN=avalanche NETWORK=avalanche yarn prepare:subgraph && yarn deploy:avalanche:test",
@@ -15,9 +15,8 @@
     "build": "graph build"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.31.0",
+    "@graphprotocol/graph-cli": "0.33.1",
     "@graphprotocol/graph-ts": "0.27.0",
     "mustache": "^4.2.0"
   }
 }
-
