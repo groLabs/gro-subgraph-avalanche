@@ -2,8 +2,8 @@
   "name": "gro-subgraph-avax",
   "license": "UNLICENSED",
   "scripts": {
-    "avax-test": "SCOPE=test BLOCKCHAIN=avalanche NETWORK=avalanche yarn prepare:subgraph && yarn deploy:avalanche:test",
-    "avax-prod": "SCOPE=prod BLOCKCHAIN=avalanche NETWORK=avalanche yarn prepare:subgraph && yarn deploy:avalanche:prod",
+    "avax-test-hosted": "SCOPE=test BLOCKCHAIN=avalanche NETWORK=avalanche yarn prepare:subgraph && yarn deploy:avalanche:test",
+    "avax-prod-hosted": "SCOPE=prod BLOCKCHAIN=avalanche NETWORK=avalanche yarn prepare:subgraph && yarn deploy:avalanche:prod",
     "prepare:subgraph": "mustache ./config/${NETWORK}-${SCOPE}.json ./templates/${BLOCKCHAIN}.subgraph.template.yaml > subgraph.yaml && rm -rf generated && yarn generate:schema && graph codegen && graph build",
     "generate:schema": "cp ./schemas/${BLOCKCHAIN}.schema.graphql schema.graphql",
     "deploy:avalanche:test": "graph deploy --node https://api.thegraph.com/deploy/ sjuanati/gro-test-avax",
