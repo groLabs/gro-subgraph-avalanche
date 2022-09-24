@@ -1,4 +1,10 @@
 {
+  masterDatas {
+    status
+    networkId
+    networkName
+    launchTimestamp
+  }
   prices {
     groDAI_e_v1_0
     groUSDC_e_v1_0
