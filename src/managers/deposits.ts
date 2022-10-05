@@ -18,7 +18,7 @@ export const manageDeposit = (
 
     //Step 3: Manage Totals
     setTotals(
-        'deposit',
+        'core_deposit',
         token,
         tx.userAddress,
         tx.coinAmount,

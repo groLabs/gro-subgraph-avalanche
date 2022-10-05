@@ -9,7 +9,7 @@ function parseWithdrawalEvent<T>(ev: T): DepoWithdraw {
         ev.block.number.toI32(),
         ev.block.timestamp.toI32(),
         ev.address,
-        'withdrawal',
+        'core_withdrawal',
         ev.params.from.toHexString(),   // links with User.id,
         ev.params.from,                 // from
         ZERO_ADDR,                      // to

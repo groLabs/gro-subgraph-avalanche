@@ -60,7 +60,7 @@
       # net_returns_groUSDT_e_v1_7 = totals.current_balance_groUSDT_e_v1_7 * totals.net_value_groUSDT_e_v1_7
       # net_returns_total = totals.current_balance_total - net_value_total
     }
-    core_deposits: transfers(where: {type: deposit}) {
+    core_deposits: transfers(where: {type: core_deposit}) {
       block
       timestamp
       hash
@@ -68,7 +68,7 @@
       coinAmount
       usdAmount
     }
-    core_withdrawals: transfers(where: {type: withdrawal}) {
+    core_withdrawals: transfers(where: {type: core_withdrawal}) {
       block
       timestamp
       hash

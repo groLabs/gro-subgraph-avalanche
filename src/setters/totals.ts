@@ -61,7 +61,7 @@ export const setTotals = (
 
     let total = initTotals(userAddress);
     
-    if (type === 'deposit' || type === 'transfer_in') {
+    if (type === 'core_deposit' || type === 'transfer_in') {
         if (coin === 'groDAI_e_vault_v1_0') {
             // coin amount
             total.amount_added_groDAI_e_v1_0 = total.amount_added_groDAI_e_v1_0.plus(coinAmount);
@@ -109,7 +109,7 @@ export const setTotals = (
         total.value_added_total = total.value_added_total.plus(usdAmount);
         total.net_value_total = total.net_value_total.plus(usdAmount);
 
-    } else if (type === 'withdrawal' || type === 'transfer_out') {
+    } else if (type === 'core_withdrawal' || type === 'transfer_out') {
 
         if (coin === 'groDAI_e_vault_v1_0') {
             // coin amount

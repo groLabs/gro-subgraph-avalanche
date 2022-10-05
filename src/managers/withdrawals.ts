@@ -17,7 +17,7 @@ export const manageWithdrawal = (
 
     //Step 3: Manage Totals
     setTotals(
-        'withdrawal',
+        'core_withdrawal',
         token,
         tx.userAddress,
         tx.coinAmount,

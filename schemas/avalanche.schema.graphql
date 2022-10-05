@@ -14,8 +14,8 @@ enum Token {
 }
 
 enum TxType {
-  deposit
-  withdrawal
+  core_deposit
+  core_withdrawal
   transfer_in
   transfer_out
   approval
