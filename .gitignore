@@ -1,5 +1,6 @@
 build
 generated
+addresses.ts
 node_modules
 subgraph.yaml
 schema.graphql

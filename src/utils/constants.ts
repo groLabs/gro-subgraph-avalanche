@@ -1,3 +1,4 @@
+import { Num } from '../types/constants';
 import {
     Bytes,
     Address,
@@ -7,8 +8,16 @@ import {
 
 // Numbers
 export const DECIMALS = 7;
-export const ZERO = BigDecimal.fromString('0');
-export const ONE = BigDecimal.fromString('1');
+export const ZERO = BigDecimal.fromString('0'); // todo: delete
+export const ONE = BigDecimal.fromString('1'); // todo: delete
+export const NUM: Num = {
+    ZERO: BigDecimal.fromString('0'),
+    ONE: BigDecimal.fromString('1'),
+    MINUS_ONE: BigDecimal.fromString('-1'),
+    THIRTY_PERCENT: BigDecimal.fromString('0.3'),
+    GVT_START_FACTOR: BigDecimal.fromString('0.005'),
+    PWRD_START_FACTOR: BigDecimal.fromString('1'),
+}
 
 // Addresses
 export const NO_ADDR = Bytes.empty();
