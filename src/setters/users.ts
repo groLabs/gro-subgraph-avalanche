@@ -1,17 +1,25 @@
-import { User } from '../../generated/schema';
-import { setMasterData } from '../setters/masterdata';
-let isMasterDataInitialised = false;
+import {
+    User,
+    MasterData,
+} from '../../generated/schema';
+import { initMD } from '../setters/masterdata';
 
+
+const initMasterDataOnce = (): void => {
+    let md = MasterData.load('0x');
+    if (!md) {
+        md = initMD();
+        md.save();
+        // todo: init all Strats
+    }
+}
 
 export const setUser = (userAddress: string): User => {
-  if (!isMasterDataInitialised) {
-    setMasterData();
-    isMasterDataInitialised = true;
-  }
-  let user = User.load(userAddress)
-  if (!user) {
-    user = new User(userAddress)
-    user.save()
-  }
-  return user
+    initMasterDataOnce();
+    let user = User.load(userAddress);
+    if (!user) {
+        user = new User(userAddress);
+        user.save();
+    }
+    return user;
 }
