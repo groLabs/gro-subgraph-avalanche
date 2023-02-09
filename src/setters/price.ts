@@ -2,9 +2,9 @@ import { Price } from '../../generated/schema';
 import { VaultAdaptorMK2_v1_0 as dai_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdc_v1_0 } from '../../generated/avaxusdcvault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdt_v1_0 } from '../../generated/avaxusdtvault_v1_0/VaultAdaptorMK2_v1_0';
-import { VaultAdaptorMK2_v1_7 as dai_v1_7 } from '../../generated/avaxdaivault_v1_7/VaultAdaptorMK2_v1_7';
-import { VaultAdaptorMK2_v1_7 as usdc_v1_7 } from '../../generated/avaxusdcvault_v1_7/VaultAdaptorMK2_v1_7';
-import { VaultAdaptorMK2_v1_7 as usdt_v1_7 } from '../../generated/avaxusdtvault_v1_7/VaultAdaptorMK2_v1_7';
+// import { VaultAdaptorMK2_v1_7 as dai_v1_7 } from '../../generated/avaxdaivault_v1_7/VaultAdaptorMK2_v1_7';
+// import { VaultAdaptorMK2_v1_7 as usdc_v1_7 } from '../../generated/avaxusdcvault_v1_7/VaultAdaptorMK2_v1_7';
+// import { VaultAdaptorMK2_v1_7 as usdt_v1_7 } from '../../generated/avaxusdtvault_v1_7/VaultAdaptorMK2_v1_7';
 import {
     log,
     BigDecimal,
@@ -35,6 +35,7 @@ const initPrice = (): Price => {
     return price;
 }
 
+// todo: get addresses from addresses.ts
 export const setLatestPrice = (token: string): void => {
     let price = initPrice();
     if (token === 'groDAI_e_vault_v1_0') {
@@ -46,15 +47,15 @@ export const setLatestPrice = (token: string): void => {
     } else if (token === 'groUSDT_e_vault_v1_0') {
         const contract = usdt_v1_0.bind(VAULT_USDT_v1_0_ADDRESS);
         price.groUSDT_e_v1_0 = callPricePerShare(contract, token);
-    } else if (token === 'groDAI_e_vault_v1_7') {
-        const contract = dai_v1_7.bind(VAULT_DAI_v1_7_ADDRESS);
-        price.groDAI_e_v1_7 = callPricePerShare(contract, token);
-    } else if (token === 'groUSDC_e_vault_v1_7') {
-        const contract = usdc_v1_7.bind(VAULT_USDC_v1_7_ADDRESS);
-        price.groUSDC_e_v1_7 = callPricePerShare(contract, token);
-    } else if (token === 'groUSDT_e_vault_v1_7') {
-        const contract = usdt_v1_7.bind(VAULT_USDT_v1_7_ADDRESS);
-        price.groUSDT_e_v1_7 = callPricePerShare(contract, token);
+    // } else if (token === 'groDAI_e_vault_v1_7') {
+    //     const contract = dai_v1_7.bind(VAULT_DAI_v1_7_ADDRESS);
+    //     price.groDAI_e_v1_7 = callPricePerShare(contract, token);
+    // } else if (token === 'groUSDC_e_vault_v1_7') {
+    //     const contract = usdc_v1_7.bind(VAULT_USDC_v1_7_ADDRESS);
+    //     price.groUSDC_e_v1_7 = callPricePerShare(contract, token);
+    // } else if (token === 'groUSDT_e_vault_v1_7') {
+    //     const contract = usdt_v1_7.bind(VAULT_USDT_v1_7_ADDRESS);
+    //     price.groUSDT_e_v1_7 = callPricePerShare(contract, token);
     } else {
         log.error('src/setters/price.ts->setLatestPrice(): no gro token found', []);
     }

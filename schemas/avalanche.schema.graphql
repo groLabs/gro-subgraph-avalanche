@@ -42,6 +42,23 @@ type MasterData  @entity {
     launchTimestamp: Int!
 }
 
+type Strategy @entity {
+  id: ID! #strategy address
+  coin: String!
+  metacoin: String!
+  protocol: String!
+  strat_name: String!
+  strat_display_name: String!
+  vault_name: String!
+  vault_display_name: String!
+  vault_address: Bytes!
+  total_assets_strategy: BigDecimal!
+  total_assets_vault: BigDecimal!
+  strategy_debt: BigDecimal!
+  order: Int!
+  # harvests: [GVaultHarvest!] @derivedFrom(field: "strategyAddress")
+}
+
 # user
 type User @entity {
   id: ID! # userAddress

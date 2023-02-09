@@ -3,6 +3,7 @@ import {
     MasterData,
 } from '../../generated/schema';
 import { initMD } from '../setters/masterdata';
+import { initAllStrategies } from '../setters/strats';
 
 
 const initMasterDataOnce = (): void => {
@@ -10,7 +11,7 @@ const initMasterDataOnce = (): void => {
     if (!md) {
         md = initMD();
         md.save();
-        // todo: init all Strats
+        initAllStrategies();
     }
 }
 
