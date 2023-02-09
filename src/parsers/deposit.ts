@@ -3,7 +3,7 @@ import { DepoWithdraw } from '../types/depowithdraw';
 import { ZERO_ADDR } from '../utils/constants';
 
 
-function parseDepositEvent<T>(ev: T): DepoWithdraw {
+export function parseDepositEvent<T>(ev: T): DepoWithdraw {
     const event = new DepoWithdraw(
         ev.transaction.hash.toHex() + "-" + ev.logIndex.toString(),
         ev.block.number.toI32(),
@@ -17,8 +17,4 @@ function parseDepositEvent<T>(ev: T): DepoWithdraw {
         ev.params._amount,              // usdAmount
     )
     return event;
-}
-
-export {
-    parseDepositEvent
 }

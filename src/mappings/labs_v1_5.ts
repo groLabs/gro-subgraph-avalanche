@@ -14,41 +14,41 @@ import { isDepositOrWithdrawal } from '../utils/contracts';
 import {
     Approval as ApprovalEventDai,
     Transfer as TransferEventDai,
-} from '../../generated/avaxdaivault_v1_0/ERC20';
+} from '../../generated/avaxdaivault_v1_5/ERC20';
 import {
     Approval as ApprovalEventUsdc,
     Transfer as TransferEventUsdc,
-} from '../../generated/avaxusdcvault_v1_0/ERC20';
+} from '../../generated/avaxusdcvault_v1_5/ERC20';
 import {
     Approval as ApprovalEventUsdt,
     Transfer as TransferEventUsdt,
-} from '../../generated/avaxusdtvault_v1_0/ERC20';
+} from '../../generated/avaxusdtvault_v1_5/ERC20';
 import {
     LogDeposit as LogDepositEventDai,
     LogWithdrawal as LogWithdrawalDai,
     LogStrategyReported as LogStrategyReportedDai,
     LogNewStrategyHarvest as LogNewStrategyHarvestDai,
-} from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
+} from '../../generated/avaxdaivault_v1_5/VaultAdaptorMK2_v1_5';
 import {
     LogDeposit as LogDepositEventUsdc,
     LogWithdrawal as LogWithdrawalUsdc,
     LogStrategyReported as LogStrategyReportedUsdc,
     LogNewStrategyHarvest as LogNewStrategyHarvestUsdc,
-} from '../../generated/avaxusdcvault_v1_0/VaultAdaptorMK2_v1_0';
+} from '../../generated/avaxusdcvault_v1_5/VaultAdaptorMK2_v1_5';
 import {
     LogDeposit as LogDepositEventUsdt,
     LogWithdrawal as LogWithdrawalUsdt,
     LogStrategyReported as LogStrategyReportedUsdt,
     LogNewStrategyHarvest as LogNewStrategyHarvestUsdt,
-} from '../../generated/avaxusdtvault_v1_0/VaultAdaptorMK2_v1_0';
+} from '../../generated/avaxusdtvault_v1_5/VaultAdaptorMK2_v1_5';
 
 // Contracts
-const vaultDaiAddress = Address.fromString(contracts.AVAXDAIVault_v1_0_Address);
-const vaultUsdcAddress = Address.fromString(contracts.AVAXUSDCVault_v1_0_Address);
-const vaultUsdtAddress = Address.fromString(contracts.AVAXUSDTVault_v1_0_Address);
-const stratDaiAddress = Address.fromString(contracts.AVAXDAIStrategy_v1_0_Address);
-const stratUsdcAddress = Address.fromString(contracts.AVAXUSDCStrategy_v1_0_Address);
-const stratUsdtAddress = Address.fromString(contracts.AVAXUSDTStrategy_v1_0_Address);
+const vaultDaiAddress = Address.fromString(contracts.AVAXDAIVault_v1_5_Address);
+const vaultUsdcAddress = Address.fromString(contracts.AVAXUSDCVault_v1_5_Address);
+const vaultUsdtAddress = Address.fromString(contracts.AVAXUSDTVault_v1_5_Address);
+const stratDaiAddress = Address.fromString(contracts.AVAXDAIStrategy_v1_5_Address);
+const stratUsdcAddress = Address.fromString(contracts.AVAXUSDCStrategy_v1_5_Address);
+const stratUsdtAddress = Address.fromString(contracts.AVAXUSDTStrategy_v1_5_Address);
 
 // Transfers
 export function handleTransferDAI(event: TransferEventDai): void {
@@ -58,7 +58,7 @@ export function handleTransferDAI(event: TransferEventDai): void {
         event.address
     )) {
         const ev = parseTransferEvent(event);
-        manageTransfer(ev, 'groDAI_e_vault_v1_0');
+        manageTransfer(ev, 'groDAI_e_vault_v1_5');
     }
 }
 export function handleTransferUSDC(event: TransferEventUsdc): void {
@@ -68,7 +68,7 @@ export function handleTransferUSDC(event: TransferEventUsdc): void {
         event.address
     )) {
         const ev = parseTransferEvent(event);
-        manageTransfer(ev, 'groUSDC_e_vault_v1_0');
+        manageTransfer(ev, 'groUSDC_e_vault_v1_5');
     }
 }
 export function handleTransferUSDT(event: TransferEventUsdt): void {
@@ -78,46 +78,46 @@ export function handleTransferUSDT(event: TransferEventUsdt): void {
         event.address
     )) {
         const ev = parseTransferEvent(event);
-        manageTransfer(ev, 'groUSDT_e_vault_v1_0');
+        manageTransfer(ev, 'groUSDT_e_vault_v1_5');
     }
 }
 
 // Approvals
 export function handleApprovaDAI(event: ApprovalEventDai): void {
     const ev = parseApprovalEvent(event);
-    manageApproval(ev, 'groDAI_e_vault_v1_0');
+    manageApproval(ev, 'groDAI_e_vault_v1_5');
 }
 export function handleApprovalUSDC(event: ApprovalEventUsdc): void {
     const ev = parseApprovalEvent(event);
-    manageApproval(ev, 'groUSDC_e_vault_v1_0');
+    manageApproval(ev, 'groUSDC_e_vault_v1_5');
 }
 export function handleApprovalUSDT(event: ApprovalEventUsdt): void {
     const ev = parseApprovalEvent(event);
-    manageApproval(ev, 'groUSDT_e_vault_v1_0');
+    manageApproval(ev, 'groUSDT_e_vault_v1_5');
 }
 
 // Deposits
 export function handleDepositDAI(event: LogDepositEventDai): void {
-    setLatestPrice('groDAI_e_vault_v1_0');
+    setLatestPrice('groDAI_e_vault_v1_5');
     const ev = parseDepositEvent(event);
-    manageDeposit(ev, 'groDAI_e_vault_v1_0');
+    manageDeposit(ev, 'groDAI_e_vault_v1_5');
 }
 export function handleDepositUSDC(event: LogDepositEventUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_0');
+    setLatestPrice('groUSDC_e_vault_v1_5');
     const ev = parseDepositEvent(event);
-    manageDeposit(ev, 'groUSDC_e_vault_v1_0');
+    manageDeposit(ev, 'groUSDC_e_vault_v1_5');
 }
 export function handleDepositUSDT(event: LogDepositEventUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_0');
+    setLatestPrice('groUSDT_e_vault_v1_5');
     const ev = parseDepositEvent(event);
-    manageDeposit(ev, 'groUSDT_e_vault_v1_0');
+    manageDeposit(ev, 'groUSDT_e_vault_v1_5');
 }
 
 // Withdrawals
 export function handleWithdrawalDAI(event: LogWithdrawalDai): void {
-    setLatestPrice('groDAI_e_vault_v1_0');
+    setLatestPrice('groDAI_e_vault_v1_5');
     const ev = parseWithdrawalEvent(event);
-    manageWithdrawal(ev, 'groDAI_e_vault_v1_0');
+    manageWithdrawal(ev, 'groDAI_e_vault_v1_5');
     setStrategy(
         stratDaiAddress,
         vaultDaiAddress,
@@ -125,9 +125,9 @@ export function handleWithdrawalDAI(event: LogWithdrawalDai): void {
     );
 }
 export function handleWithdrawalUSDC(event: LogWithdrawalUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_0');
+    setLatestPrice('groUSDC_e_vault_v1_5');
     const ev = parseWithdrawalEvent(event);
-    manageWithdrawal(ev, 'groUSDC_e_vault_v1_0');
+    manageWithdrawal(ev, 'groUSDC_e_vault_v1_5');
     setStrategy(
         stratUsdcAddress,
         vaultUsdcAddress,
@@ -135,9 +135,9 @@ export function handleWithdrawalUSDC(event: LogWithdrawalUsdc): void {
     );
 }
 export function handleWithdrawalUSDT(event: LogWithdrawalUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_0');
+    setLatestPrice('groUSDT_e_vault_v1_5');
     const ev = parseWithdrawalEvent(event);
-    manageWithdrawal(ev, 'groUSDT_e_vault_v1_0');
+    manageWithdrawal(ev, 'groUSDT_e_vault_v1_5');
     setStrategy(
         stratUsdtAddress,
         vaultUsdtAddress,
@@ -147,7 +147,7 @@ export function handleWithdrawalUSDT(event: LogWithdrawalUsdt): void {
 
 // Strategy Harvests
 export function handleStrategyReportedDAI(event: LogStrategyReportedDai): void {
-    setLatestPrice('groDAI_e_vault_v1_0');
+    setLatestPrice('groDAI_e_vault_v1_5');
     setStrategy(
         stratDaiAddress,
         vaultDaiAddress,
@@ -155,7 +155,7 @@ export function handleStrategyReportedDAI(event: LogStrategyReportedDai): void {
     );
 }
 export function handleStrategyReportedUSDC(event: LogStrategyReportedUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_0');
+    setLatestPrice('groUSDC_e_vault_v1_5');
     setStrategy(
         stratUsdcAddress,
         vaultUsdcAddress,
@@ -163,7 +163,7 @@ export function handleStrategyReportedUSDC(event: LogStrategyReportedUsdc): void
     );
 }
 export function handleStrategyReportedUSDT(event: LogStrategyReportedUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_0');
+    setLatestPrice('groUSDT_e_vault_v1_5');
     setStrategy(
         stratUsdtAddress,
         vaultUsdtAddress,
@@ -173,7 +173,7 @@ export function handleStrategyReportedUSDT(event: LogStrategyReportedUsdt): void
 
 // New Strategy Harvest
 export function handleNewStrategyHarvestDAI(event: LogNewStrategyHarvestDai): void {
-    setLatestPrice('groDAI_e_vault_v1_0');
+    setLatestPrice('groDAI_e_vault_v1_5');
     setStrategy(
         stratDaiAddress,
         vaultDaiAddress,
@@ -181,7 +181,7 @@ export function handleNewStrategyHarvestDAI(event: LogNewStrategyHarvestDai): vo
     );
 }
 export function handleNewStrategyHarvestUSDC(event: LogNewStrategyHarvestUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_0');
+    setLatestPrice('groUSDC_e_vault_v1_5');
     setStrategy(
         stratUsdcAddress,
         vaultUsdcAddress,
@@ -189,7 +189,7 @@ export function handleNewStrategyHarvestUSDC(event: LogNewStrategyHarvestUsdc): 
     );
 }
 export function handleNewStrategyHarvestUSDT(event: LogNewStrategyHarvestUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_0');
+    setLatestPrice('groUSDT_e_vault_v1_5');
     setStrategy(
         stratUsdtAddress,
         vaultUsdtAddress,

@@ -8,6 +8,12 @@ enum Token {
   groDAI_e_vault_v1_0
   groUSDC_e_vault_v1_0
   groUSDT_e_vault_v1_0
+  groDAI_e_vault_v1_5
+  groUSDC_e_vault_v1_5
+  groUSDT_e_vault_v1_5
+  groDAI_e_vault_v1_6
+  groUSDC_e_vault_v1_6
+  groUSDT_e_vault_v1_6
   groDAI_e_vault_v1_7
   groUSDC_e_vault_v1_7
   groUSDT_e_vault_v1_7
@@ -76,44 +82,84 @@ type Totals @entity {
   amount_added_groDAI_e_v1_0: BigDecimal!
   amount_added_groUSDC_e_v1_0: BigDecimal!
   amount_added_groUSDT_e_v1_0: BigDecimal!
+  amount_added_groDAI_e_v1_5: BigDecimal!
+  amount_added_groUSDC_e_v1_5: BigDecimal!
+  amount_added_groUSDT_e_v1_5: BigDecimal!
+  amount_added_groDAI_e_v1_6: BigDecimal!
+  amount_added_groUSDC_e_v1_6: BigDecimal!
+  amount_added_groUSDT_e_v1_6: BigDecimal!
   amount_added_groDAI_e_v1_7: BigDecimal!
   amount_added_groUSDC_e_v1_7: BigDecimal!
   amount_added_groUSDT_e_v1_7: BigDecimal!
+
   amount_removed_groDAI_e_v1_0: BigDecimal!
   amount_removed_groUSDC_e_v1_0: BigDecimal!
   amount_removed_groUSDT_e_v1_0: BigDecimal!
+  amount_removed_groDAI_e_v1_5: BigDecimal!
+  amount_removed_groUSDC_e_v1_5: BigDecimal!
+  amount_removed_groUSDT_e_v1_5: BigDecimal!
+  amount_removed_groDAI_e_v1_6: BigDecimal!
+  amount_removed_groUSDC_e_v1_6: BigDecimal!
+  amount_removed_groUSDT_e_v1_6: BigDecimal!
   amount_removed_groDAI_e_v1_7: BigDecimal!
   amount_removed_groUSDC_e_v1_7: BigDecimal!
   amount_removed_groUSDT_e_v1_7: BigDecimal!
+
   net_amount_groDAI_e_v1_0: BigDecimal!
   net_amount_groUSDC_e_v1_0: BigDecimal!
   net_amount_groUSDT_e_v1_0: BigDecimal!
+  net_amount_groDAI_e_v1_5: BigDecimal!
+  net_amount_groUSDC_e_v1_5: BigDecimal!
+  net_amount_groUSDT_e_v1_5: BigDecimal!
+  net_amount_groDAI_e_v1_6: BigDecimal!
+  net_amount_groUSDC_e_v1_6: BigDecimal!
+  net_amount_groUSDT_e_v1_6: BigDecimal!
   net_amount_groDAI_e_v1_7: BigDecimal!
   net_amount_groUSDC_e_v1_7: BigDecimal!
   net_amount_groUSDT_e_v1_7: BigDecimal!
+
   # USD value
   value_added_groDAI_e_v1_0: BigDecimal!
   value_added_groUSDC_e_v1_0: BigDecimal!
   value_added_groUSDT_e_v1_0: BigDecimal!
+  value_added_groDAI_e_v1_5: BigDecimal!
+  value_added_groUSDC_e_v1_5: BigDecimal!
+  value_added_groUSDT_e_v1_5: BigDecimal!
+  value_added_groDAI_e_v1_6: BigDecimal!
+  value_added_groUSDC_e_v1_6: BigDecimal!
+  value_added_groUSDT_e_v1_6: BigDecimal!
   value_added_groDAI_e_v1_7: BigDecimal!
   value_added_groUSDC_e_v1_7: BigDecimal!
   value_added_groUSDT_e_v1_7: BigDecimal!
   value_added_total: BigDecimal!
+
   value_removed_groDAI_e_v1_0: BigDecimal!
   value_removed_groUSDC_e_v1_0: BigDecimal!
   value_removed_groUSDT_e_v1_0: BigDecimal!
+  value_removed_groDAI_e_v1_5: BigDecimal!
+  value_removed_groUSDC_e_v1_5: BigDecimal!
+  value_removed_groUSDT_e_v1_5: BigDecimal!
+  value_removed_groDAI_e_v1_6: BigDecimal!
+  value_removed_groUSDC_e_v1_6: BigDecimal!
+  value_removed_groUSDT_e_v1_6: BigDecimal!
   value_removed_groDAI_e_v1_7: BigDecimal!
   value_removed_groUSDC_e_v1_7: BigDecimal!
   value_removed_groUSDT_e_v1_7: BigDecimal!
   value_removed_total: BigDecimal!
+
   net_value_groDAI_e_v1_0: BigDecimal!
   net_value_groUSDC_e_v1_0: BigDecimal!
   net_value_groUSDT_e_v1_0: BigDecimal!
+  net_value_groDAI_e_v1_5: BigDecimal!
+  net_value_groUSDC_e_v1_5: BigDecimal!
+  net_value_groUSDT_e_v1_5: BigDecimal!
+  net_value_groDAI_e_v1_6: BigDecimal!
+  net_value_groUSDC_e_v1_6: BigDecimal!
+  net_value_groUSDT_e_v1_6: BigDecimal!
   net_value_groDAI_e_v1_7: BigDecimal!
   net_value_groUSDC_e_v1_7: BigDecimal!
   net_value_groUSDT_e_v1_7: BigDecimal!
   net_value_total: BigDecimal!
-
 }
 
 # latest token price
@@ -122,6 +168,12 @@ type Price @entity {
   groDAI_e_v1_0: BigDecimal!
   groUSDC_e_v1_0: BigDecimal!
   groUSDT_e_v1_0: BigDecimal!
+  groDAI_e_v1_5: BigDecimal!
+  groUSDC_e_v1_5: BigDecimal!
+  groUSDT_e_v1_5: BigDecimal!
+  groDAI_e_v1_6: BigDecimal!
+  groUSDC_e_v1_6: BigDecimal!
+  groUSDT_e_v1_6: BigDecimal!
   groDAI_e_v1_7: BigDecimal!
   groUSDC_e_v1_7: BigDecimal!
   groUSDT_e_v1_7: BigDecimal!
