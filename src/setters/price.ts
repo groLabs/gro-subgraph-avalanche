@@ -58,7 +58,6 @@ const initPrice = (): Price => {
     return price;
 }
 
-// todo: get addresses from addresses.ts
 export const setLatestPrice = (token: string): void => {
     let price = initPrice();
     if (token === 'groDAI_e_vault_v1_0') {
@@ -78,7 +77,7 @@ export const setLatestPrice = (token: string): void => {
         price.groUSDC_e_v1_5 = callPricePerShare(contract, token);
     } else if (token === 'groUSDT_e_vault_v1_5') {
         const contract = usdt_v1_5.bind(vaultUsdt_1_5_Address);
-        price.groUSDT_e_v1_0 = callPricePerShare(contract, token);
+        price.groUSDT_e_v1_5 = callPricePerShare(contract, token);
     } else if (token === 'groDAI_e_vault_v1_6') {
         const contract = dai_v1_6.bind(vaultDai_1_6_Address);
         price.groDAI_e_v1_6 = callPricePerShare(contract, token);
@@ -87,7 +86,7 @@ export const setLatestPrice = (token: string): void => {
         price.groUSDC_e_v1_6 = callPricePerShare(contract, token);
     } else if (token === 'groUSDT_e_vault_v1_6') {
         const contract = usdt_v1_6.bind(vaultUsdt_1_6_Address);
-        price.groUSDT_e_v1_0 = callPricePerShare(contract, token);
+        price.groUSDT_e_v1_6 = callPricePerShare(contract, token);
     } else if (token === 'groDAI_e_vault_v1_7') {
         const contract = dai_v1_7.bind(vaultDai_1_7_Address);
         price.groDAI_e_v1_7 = callPricePerShare(contract, token);
@@ -96,7 +95,7 @@ export const setLatestPrice = (token: string): void => {
         price.groUSDC_e_v1_7 = callPricePerShare(contract, token);
     } else if (token === 'groUSDT_e_vault_v1_7') {
         const contract = usdt_v1_7.bind(vaultUsdt_1_7_Address);
-        price.groUSDT_e_v1_0 = callPricePerShare(contract, token);
+        price.groUSDT_e_v1_7 = callPricePerShare(contract, token);
     } else {
         log.error('src/setters/price.ts->setLatestPrice(): no gro token found', []);
     }

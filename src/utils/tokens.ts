@@ -57,7 +57,6 @@ function tokenToDecimal(
 }
 
 // Retrieves price per share for a given token
-// @dev: switch statement can't be used (i.e.: Cannot redeclare block-scoped variable 'contract')
 const getPricePerShare = (token: string): BigDecimal[] => {
     if (token === 'groDAI_e_vault_v1_0') {
         const contract = dai_v1_0.bind(vaultDai_1_0_Address);
@@ -96,13 +95,15 @@ const getPricePerShare = (token: string): BigDecimal[] => {
         const contract = usdt_v1_7.bind(vaultUsdt_1_7_Address);
         return callPricePerShare(contract, token);
     } else {
-        log.error('src/utils/tokens.ts->getPricePerShare(): no gro token found', []);
+        log.error(
+            'src/utils/tokens.ts->getPricePerShare(): gro token {} not found',
+            [token]
+        );
         return ZERO_RESULT;
     }
 }
 
 function callPricePerShare<T>(contract: T, token: string): BigDecimal[] {
-
     if (contract) {
         //@ts-ignore
         const getPricePerShare = contract.try_getPricePerShare();
@@ -123,12 +124,12 @@ function callPricePerShare<T>(contract: T, token: string): BigDecimal[] {
             const base = token.includes('DAI')
                 ? 18
                 : 6;
-
             const totalEstimatedAssets = tokenToDecimal(getTotalEstimatedAssets.value, base, 0);
             const totalSupply = tokenToDecimal(getTotalSupply.value, base, 0);
-            const estimatedPricePerShare = totalEstimatedAssets.div(totalSupply);
+            const estimatedPricePerShare = (totalSupply.notEqual(ZERO))
+                ? totalEstimatedAssets.div(totalSupply)
+                : ZERO;
             const currentPricePerShare = tokenToDecimal(getPricePerShare.value, base, 0);
-
             const finalPricePerShare = (currentPricePerShare.gt(estimatedPricePerShare))
                 ? estimatedPricePerShare
                 : currentPricePerShare;
@@ -138,7 +139,6 @@ function callPricePerShare<T>(contract: T, token: string): BigDecimal[] {
                 estimatedPricePerShare,
                 finalPricePerShare
             ];
-
         }
     } else {
         log.error('src/utils/tokens.ts->callPricePerShare(): no contract found', []);
