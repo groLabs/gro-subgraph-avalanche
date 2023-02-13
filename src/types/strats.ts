@@ -1,16 +1,3 @@
-// TODO: Vault needed?
-export class Vault {
-    id: string
-    active: boolean
-    constructor(
-        id: string,
-        active: boolean,
-    ) {
-        this.id = id
-        this.active = active
-    }
-}
-
 export class Strategy {
     id: string
     vault: string
@@ -21,6 +8,7 @@ export class Strategy {
     coin: string
     protocol: string
     metacoin: string
+    tvl_cap: string
     active: boolean
     order: number
     constructor(
@@ -33,6 +21,7 @@ export class Strategy {
         coin: string,
         metacoin: string,
         protocol: string,
+        tvl_cap: string,
         active: boolean,
         order: number,
     ) {
@@ -45,6 +34,7 @@ export class Strategy {
         this.coin = coin
         this.metacoin = metacoin
         this.protocol = protocol
+        this.tvl_cap = tvl_cap
         this.active = active
         this.order = order
     }

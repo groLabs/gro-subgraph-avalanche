@@ -2,13 +2,14 @@
 import { getStrategies } from '../utils/strats';
 import { tokenToDecimal } from '../utils/tokens';
 import { Strategy } from '../../generated/schema';
-import { VaultAdaptorMK2_v1_0 as vault_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
-import { VaultAdaptorMK2_v1_5 as vault_v1_5 } from '../../generated/avaxdaivault_v1_5/VaultAdaptorMK2_v1_5';
-import { VaultAdaptorMK2_v1_6 as vault_v1_6 } from '../../generated/avaxdaivault_v1_6/VaultAdaptorMK2_v1_6';
+// import { VaultAdaptorMK2_v1_0 as vault_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
+// import { VaultAdaptorMK2_v1_5 as vault_v1_5 } from '../../generated/avaxdaivault_v1_5/VaultAdaptorMK2_v1_5';
+// import { VaultAdaptorMK2_v1_6 as vault_v1_6 } from '../../generated/avaxdaivault_v1_6/VaultAdaptorMK2_v1_6';
 import { VaultAdaptorMK2_v1_7 as vault_v1_7 } from '../../generated/avaxdaivault_v1_7/VaultAdaptorMK2_v1_7';
 import {
     log,
     Address,
+    BigDecimal,
 } from '@graphprotocol/graph-ts';
 import {
     NUM,
@@ -29,6 +30,7 @@ const noStrategy = (): Strategy => {
     strat.total_assets_strategy = NUM.ZERO;
     strat.total_assets_vault = NUM.ZERO;
     strat.strategy_debt = NUM.ZERO;
+    strat.tvl_cap = NUM.ZERO;
     strat.order = i32(0);
     return strat;
 }
@@ -50,6 +52,7 @@ export const initAllStrategies = (): void => {
             strat.total_assets_strategy = NUM.ZERO;
             strat.total_assets_vault = NUM.ZERO;
             strat.strategy_debt = NUM.ZERO;
+            strat.tvl_cap = BigDecimal.fromString(str.tvl_cap);
             strat.order = i32(str.order);
             strat.save();
         }
@@ -75,6 +78,7 @@ export const initStrategy = (stratAddress: string): Strategy => {
                 strat.total_assets_strategy = NUM.ZERO;
                 strat.total_assets_vault = NUM.ZERO;
                 strat.strategy_debt = NUM.ZERO;
+                strat.tvl_cap = BigDecimal.fromString(str.tvl_cap);
                 strat.order = i32(str.order);
                 return strat;
             }
@@ -115,4 +119,12 @@ export const setStrategy = (
     strat.save();
 }
 
-// const getVaultbyAddress = (vaultAddress: Address): 
+export const setDepositLimit = (
+    strategyAddress: Address,
+    depositLimit: BigDecimal,
+): void => {
+    const id = strategyAddress.toHexString();
+    let strat = initStrategy(id);
+    strat.tvl_cap = depositLimit;
+    strat.save();
+}

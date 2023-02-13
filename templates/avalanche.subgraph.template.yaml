@@ -41,6 +41,8 @@ dataSources:
           handler: handleStrategyReportedDAI
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestDAI
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitDAI        
       file: ./src/mappings/labs_v1_0.ts
   - kind: ethereum/contract
     name: avaxusdcvault_v1_0
@@ -79,6 +81,8 @@ dataSources:
           handler: handleStrategyReportedUSDC
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDC
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDC
       file: ./src/mappings/labs_v1_0.ts
   - kind: ethereum/contract
     name: avaxusdtvault_v1_0
@@ -117,8 +121,9 @@ dataSources:
           handler: handleStrategyReportedUSDT
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDT
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_0.ts
-
 
 
 # ********** Vaults 1.5 **********************************************************
@@ -159,6 +164,8 @@ dataSources:
           handler: handleStrategyReportedDAI
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestDAI
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitDAI
       file: ./src/mappings/labs_v1_5.ts
   - kind: ethereum/contract
     name: avaxusdcvault_v1_5
@@ -197,6 +204,8 @@ dataSources:
           handler: handleStrategyReportedUSDC
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDC
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDC
       file: ./src/mappings/labs_v1_5.ts
   - kind: ethereum/contract
     name: avaxusdtvault_v1_5
@@ -235,10 +244,9 @@ dataSources:
           handler: handleStrategyReportedUSDT
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDT
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_5.ts
-
-
-
 
 
 #********** Vaults 1.6 **********************************************************
@@ -279,6 +287,8 @@ dataSources:
           handler: handleStrategyReportedDAI
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestDAI
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitDAI
       file: ./src/mappings/labs_v1_6.ts
   - kind: ethereum/contract
     name: avaxusdcvault_v1_6
@@ -317,6 +327,8 @@ dataSources:
           handler: handleStrategyReportedUSDC
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDC
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDC
       file: ./src/mappings/labs_v1_6.ts
   - kind: ethereum/contract
     name: avaxusdtvault_v1_6
@@ -355,8 +367,9 @@ dataSources:
           handler: handleStrategyReportedUSDT
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDT
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_6.ts
-
 
 
 #********** Vaults 1.7 **********************************************************
@@ -395,6 +408,8 @@ dataSources:
           handler: handleStrategyReportedDAI
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestDAI
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitDAI
       file: ./src/mappings/labs_v1_7.ts
   - kind: ethereum/contract
     name: avaxusdcvault_v1_7
@@ -431,6 +446,8 @@ dataSources:
           handler: handleStrategyReportedUSDC
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDC
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDC
       file: ./src/mappings/labs_v1_7.ts
   - kind: ethereum/contract
     name: avaxusdtvault_v1_7
@@ -467,9 +484,9 @@ dataSources:
           handler: handleStrategyReportedUSDT
         - event: LogNewStrategyHarvest(bool,uint256)
           handler: handleNewStrategyHarvestUSDT
+        - event: LogDepositLimit(uint256)
+          handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_7.ts
-
-
 
 
 

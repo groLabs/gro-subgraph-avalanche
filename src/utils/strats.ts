@@ -13,6 +13,7 @@ export const getStrategies = (): Strat[] => {
             'DAI.e',        // coin
             'groDAI.e',     // metacoin
             'ah',           // protocol
+            '2000000',      // tvl cap
             true,           // active
             0,              // order
         ),
@@ -26,6 +27,7 @@ export const getStrategies = (): Strat[] => {
             'USDC.e',       // coin
             'groUSDC.e',    // metacoin
             'ah',           // protocol
+            '2000000',      // tvl cap
             true,           // active
             1,              // order
         ),
@@ -39,6 +41,7 @@ export const getStrategies = (): Strat[] => {
             'USDT.e',       // coin
             'groUSDT.e',    // metacoin
             'ah',           // protocol
+            '2000000',      // tvl cap
             true,           // active
             2,              // order
         ),
@@ -52,6 +55,7 @@ export const getStrategies = (): Strat[] => {
             'DAI.e',        // coin
             'groDAI.e',     // metacoin
             'ah',           // protocol
+            '10000000',     // tvl cap
             true,           // active
             3,              // order
         ),
@@ -65,6 +69,7 @@ export const getStrategies = (): Strat[] => {
             'USDC.e',       // coin
             'groUSDC.e',    // metacoin
             'ah',           // protocol
+            '10000000',     // tvl cap
             true,           // active
             4,              // order
         ),
@@ -78,6 +83,7 @@ export const getStrategies = (): Strat[] => {
             'USDT.e',       // coin
             'groUSDT.e',    // metacoin
             'ah',           // protocol
+            '10000000',     // tvl cap
             true,           // active
             5,              // order
         ),
@@ -91,6 +97,7 @@ export const getStrategies = (): Strat[] => {
             'DAI.e',        // coin
             'groDAI.e',     // metacoin
             'ah',           // protocol
+            '10000000',     // tvl cap
             true,           // active
             6,              // order
         ),
@@ -104,6 +111,7 @@ export const getStrategies = (): Strat[] => {
             'USDC.e',       // coin
             'groUSDC.e',    // metacoin
             'ah',           // protocol
+            '10000000',     // tvl cap
             true,           // active
             7,              // order
         ),
@@ -117,6 +125,7 @@ export const getStrategies = (): Strat[] => {
             'USDT.e',       // coin
             'groUSDT.e',    // metacoin
             'ah',           // protocol
+            '10000000',     // tvl cap
             true,           // active
             8,              // order
         ),
@@ -130,6 +139,7 @@ export const getStrategies = (): Strat[] => {
             'DAI.e',        // coin
             'groDAI.e',     // metacoin
             'ah',           // protocol
+            '20000000',     // tvl cap
             true,           // active
             9,              // order
         ),
@@ -143,6 +153,7 @@ export const getStrategies = (): Strat[] => {
             'USDC.e',       // coin
             'groUSDC.e',    // metacoin
             'ah',           // protocol
+            '20000000',     // tvl cap
             true,           // active
             10,              // order
         ),
@@ -156,6 +167,7 @@ export const getStrategies = (): Strat[] => {
             'USDT.e',       // coin
             'groUSDT.e',    // metacoin
             'ah',           // protocol
+            '20000000',     // tvl cap
             true,           // active
             11,              // order
         ),

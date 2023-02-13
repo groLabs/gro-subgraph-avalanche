@@ -1,5 +1,7 @@
 import { contracts } from '../../addresses';
+import { DECIMALS } from '../utils/constants';
 import { setStrategy } from '../setters/strats';
+import { tokenToDecimal } from '../utils/tokens';
 import { Address } from '@graphprotocol/graph-ts';
 import { parseApprovalEvent } from '../parsers/approval';
 import { parseTransferEvent } from '../parsers/transfer';
@@ -10,6 +12,7 @@ import { manageTransfer } from '../managers/transfers';
 import { manageDeposit } from '../managers/deposits';
 import { manageWithdrawal } from '../managers/withdrawals';
 import { setLatestPrice } from '../setters/price';
+import { setDepositLimit } from '../setters/strats';
 import { isDepositOrWithdrawal } from '../utils/contracts';
 import {
     Approval as ApprovalEventDai,
@@ -26,18 +29,21 @@ import {
 import {
     LogDeposit as LogDepositEventDai,
     LogWithdrawal as LogWithdrawalDai,
+    LogDepositLimit as LogDepositLimitDai,
     LogStrategyReported as LogStrategyReportedDai,
     LogNewStrategyHarvest as LogNewStrategyHarvestDai,
 } from '../../generated/avaxdaivault_v1_5/VaultAdaptorMK2_v1_5';
 import {
     LogDeposit as LogDepositEventUsdc,
     LogWithdrawal as LogWithdrawalUsdc,
+    LogDepositLimit as LogDepositLimitUsdc,
     LogStrategyReported as LogStrategyReportedUsdc,
     LogNewStrategyHarvest as LogNewStrategyHarvestUsdc,
 } from '../../generated/avaxusdcvault_v1_5/VaultAdaptorMK2_v1_5';
 import {
     LogDeposit as LogDepositEventUsdt,
     LogWithdrawal as LogWithdrawalUsdt,
+    LogDepositLimit as LogDepositLimitUsdt,
     LogStrategyReported as LogStrategyReportedUsdt,
     LogNewStrategyHarvest as LogNewStrategyHarvestUsdt,
 } from '../../generated/avaxusdtvault_v1_5/VaultAdaptorMK2_v1_5';
@@ -194,5 +200,28 @@ export function handleNewStrategyHarvestUSDT(event: LogNewStrategyHarvestUsdt): 
         stratUsdtAddress,
         vaultUsdtAddress,
         6,
+    );
+}
+
+// Deposit Limit
+
+export function handleDepositLimitDAI(event: LogDepositLimitDai): void {
+    setDepositLimit(
+        stratDaiAddress,
+        tokenToDecimal(event.params.newLimit, 18, DECIMALS),
+    );
+}
+
+export function handleDepositLimitUSDC(event: LogDepositLimitUsdc): void {
+    setDepositLimit(
+        stratUsdcAddress,
+        tokenToDecimal(event.params.newLimit, 6, DECIMALS),
+    );
+}
+
+export function handleDepositLimitUSDT(event: LogDepositLimitUsdt): void {
+    setDepositLimit(
+        stratUsdtAddress,
+        tokenToDecimal(event.params.newLimit, 6, DECIMALS),
     );
 }

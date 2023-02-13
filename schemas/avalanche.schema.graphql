@@ -61,6 +61,7 @@ type Strategy @entity {
   total_assets_strategy: BigDecimal!
   total_assets_vault: BigDecimal!
   strategy_debt: BigDecimal!
+  tvl_cap: BigDecimal!
   order: Int!
   # harvests: [GVaultHarvest!] @derivedFrom(field: "strategyAddress")
 }
