@@ -2,7 +2,6 @@
 import { ApprovalEvent } from '../types/approval';
 
 
-//TODO: Careful, DAI has different fields!
 export function parseApprovalEvent<T>(ev: T): ApprovalEvent {
     const event = new ApprovalEvent(
         ev.transaction.hash.toHex() + "-" + ev.logIndex.toString(),

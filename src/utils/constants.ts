@@ -8,8 +8,7 @@ import {
 
 // Numbers
 export const DECIMALS = 7;
-export const ZERO = BigDecimal.fromString('0'); // todo: delete
-export const ONE = BigDecimal.fromString('1'); // todo: delete
+export const LAUNCH_TIMESTAMP_AVAX = 1638483222;
 export const NUM: Num = {
     ZERO: BigDecimal.fromString('0'),
     ONE: BigDecimal.fromString('1'),

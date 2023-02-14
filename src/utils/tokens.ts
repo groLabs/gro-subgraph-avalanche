@@ -1,4 +1,4 @@
-import { contracts } from '../../addresses';
+import { NUM } from '../utils/constants';
 import { VaultAdaptorMK2_v1_0 as dai_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdc_v1_0 } from '../../generated/avaxusdcvault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdt_v1_0 } from '../../generated/avaxusdtvault_v1_0/VaultAdaptorMK2_v1_0';
@@ -13,32 +13,27 @@ import { VaultAdaptorMK2_v1_7 as usdc_v1_7 } from '../../generated/avaxusdcvault
 import { VaultAdaptorMK2_v1_7 as usdt_v1_7 } from '../../generated/avaxusdtvault_v1_7/VaultAdaptorMK2_v1_7';
 import {
     log,
-    Address,
     BigInt,
     BigDecimal,
 } from '@graphprotocol/graph-ts';
 import {
-    ZERO,
-} from '../utils/constants';
-const ZERO_RESULT = [ZERO, ZERO, ZERO];
-
-// TODO : in one single file, and then export it!!!
-// Contracts
-const vaultDai_1_0_Address = Address.fromString(contracts.AVAXDAIVault_v1_0_Address);
-const vaultUsdc_1_0_Address = Address.fromString(contracts.AVAXUSDCVault_v1_0_Address);
-const vaultUsdt_1_0_Address = Address.fromString(contracts.AVAXUSDTVault_v1_0_Address);
-const vaultDai_1_5_Address = Address.fromString(contracts.AVAXDAIVault_v1_5_Address);
-const vaultUsdc_1_5_Address = Address.fromString(contracts.AVAXUSDCVault_v1_5_Address);
-const vaultUsdt_1_5_Address = Address.fromString(contracts.AVAXUSDTVault_v1_5_Address);
-const vaultDai_1_6_Address = Address.fromString(contracts.AVAXDAIVault_v1_6_Address);
-const vaultUsdc_1_6_Address = Address.fromString(contracts.AVAXUSDCVault_v1_6_Address);
-const vaultUsdt_1_6_Address = Address.fromString(contracts.AVAXUSDTVault_v1_6_Address);
-const vaultDai_1_7_Address = Address.fromString(contracts.AVAXDAIVault_v1_7_Address);
-const vaultUsdc_1_7_Address = Address.fromString(contracts.AVAXUSDCVault_v1_7_Address);
-const vaultUsdt_1_7_Address = Address.fromString(contracts.AVAXUSDTVault_v1_7_Address);
+    vaultDai_1_0_Address,
+    vaultUsdc_1_0_Address,
+    vaultUsdt_1_0_Address,
+    vaultDai_1_5_Address,
+    vaultUsdc_1_5_Address,
+    vaultUsdt_1_5_Address,
+    vaultDai_1_6_Address,
+    vaultUsdc_1_6_Address,
+    vaultUsdt_1_6_Address,
+    vaultDai_1_7_Address,
+    vaultUsdc_1_7_Address,
+    vaultUsdt_1_7_Address,
+} from '../utils/contracts';
+const ZERO_RESULT = [NUM.ZERO, NUM.ZERO, NUM.ZERO];
 
 // Converts a BigInt into a (N-decimal) BigDecimal
-function tokenToDecimal(
+export function tokenToDecimal(
     amount: BigInt,
     precision: i32,
     decimals: i32,
@@ -57,7 +52,7 @@ function tokenToDecimal(
 }
 
 // Retrieves price per share for a given token
-const getPricePerShare = (token: string): BigDecimal[] => {
+export const getPricePerShare = (token: string): BigDecimal[] => {
     if (token === 'groDAI_e_vault_v1_0') {
         const contract = dai_v1_0.bind(vaultDai_1_0_Address);
         return callPricePerShare(contract, token);
@@ -126,9 +121,9 @@ function callPricePerShare<T>(contract: T, token: string): BigDecimal[] {
                 : 6;
             const totalEstimatedAssets = tokenToDecimal(getTotalEstimatedAssets.value, base, 0);
             const totalSupply = tokenToDecimal(getTotalSupply.value, base, 0);
-            const estimatedPricePerShare = (totalSupply.notEqual(ZERO))
+            const estimatedPricePerShare = (totalSupply.notEqual(NUM.ZERO))
                 ? totalEstimatedAssets.div(totalSupply)
-                : ZERO;
+                : NUM.ZERO;
             const currentPricePerShare = tokenToDecimal(getPricePerShare.value, base, 0);
             const finalPricePerShare = (currentPricePerShare.gt(estimatedPricePerShare))
                 ? estimatedPricePerShare
@@ -144,9 +139,4 @@ function callPricePerShare<T>(contract: T, token: string): BigDecimal[] {
         log.error('src/utils/tokens.ts->callPricePerShare(): no contract found', []);
         return ZERO_RESULT;
     }
-}
-
-export {
-    getPricePerShare,
-    tokenToDecimal,
 }

@@ -1,5 +1,6 @@
+import { NUM } from '../utils/constants';
 import { Price } from '../../generated/schema';
-import { contracts } from '../../addresses';
+import { tokenToDecimal } from '../utils/tokens';
 import { VaultAdaptorMK2_v1_0 as dai_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdc_v1_0 } from '../../generated/avaxusdcvault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdt_v1_0 } from '../../generated/avaxusdtvault_v1_0/VaultAdaptorMK2_v1_0';
@@ -14,46 +15,40 @@ import { VaultAdaptorMK2_v1_7 as usdc_v1_7 } from '../../generated/avaxusdcvault
 import { VaultAdaptorMK2_v1_7 as usdt_v1_7 } from '../../generated/avaxusdtvault_v1_7/VaultAdaptorMK2_v1_7';
 import {
     log,
-    Address,
     BigDecimal,
 } from '@graphprotocol/graph-ts';
 import {
-    ZERO,
-} from '../utils/constants';
-import { tokenToDecimal } from '../utils/tokens';
-
-// TODO : in one single file, and then export it!!!
-// Contracts
-const vaultDai_1_0_Address = Address.fromString(contracts.AVAXDAIVault_v1_0_Address);
-const vaultUsdc_1_0_Address = Address.fromString(contracts.AVAXUSDCVault_v1_0_Address);
-const vaultUsdt_1_0_Address = Address.fromString(contracts.AVAXUSDTVault_v1_0_Address);
-const vaultDai_1_5_Address = Address.fromString(contracts.AVAXDAIVault_v1_5_Address);
-const vaultUsdc_1_5_Address = Address.fromString(contracts.AVAXUSDCVault_v1_5_Address);
-const vaultUsdt_1_5_Address = Address.fromString(contracts.AVAXUSDTVault_v1_5_Address);
-const vaultDai_1_6_Address = Address.fromString(contracts.AVAXDAIVault_v1_6_Address);
-const vaultUsdc_1_6_Address = Address.fromString(contracts.AVAXUSDCVault_v1_6_Address);
-const vaultUsdt_1_6_Address = Address.fromString(contracts.AVAXUSDTVault_v1_6_Address);
-const vaultDai_1_7_Address = Address.fromString(contracts.AVAXDAIVault_v1_7_Address);
-const vaultUsdc_1_7_Address = Address.fromString(contracts.AVAXUSDCVault_v1_7_Address);
-const vaultUsdt_1_7_Address = Address.fromString(contracts.AVAXUSDTVault_v1_7_Address);
+    vaultDai_1_0_Address,
+    vaultUsdc_1_0_Address,
+    vaultUsdt_1_0_Address,
+    vaultDai_1_5_Address,
+    vaultUsdc_1_5_Address,
+    vaultUsdt_1_5_Address,
+    vaultDai_1_6_Address,
+    vaultUsdc_1_6_Address,
+    vaultUsdt_1_6_Address,
+    vaultDai_1_7_Address,
+    vaultUsdc_1_7_Address,
+    vaultUsdt_1_7_Address,
+} from '../utils/contracts';
 
 
 const initPrice = (): Price => {
     let price = Price.load('0x');
     if (!price) {
         price = new Price('0x');
-        price.groDAI_e_v1_0 = ZERO;
-        price.groUSDC_e_v1_0 = ZERO;
-        price.groUSDT_e_v1_0 = ZERO;
-        price.groDAI_e_v1_5 = ZERO;
-        price.groUSDC_e_v1_5 = ZERO;
-        price.groUSDT_e_v1_5 = ZERO;
-        price.groDAI_e_v1_6 = ZERO;
-        price.groUSDC_e_v1_6 = ZERO;
-        price.groUSDT_e_v1_6 = ZERO;
-        price.groDAI_e_v1_7 = ZERO;
-        price.groUSDC_e_v1_7 = ZERO;
-        price.groUSDT_e_v1_7 = ZERO;
+        price.groDAI_e_v1_0 = NUM.ZERO;
+        price.groUSDC_e_v1_0 = NUM.ZERO;
+        price.groUSDT_e_v1_0 = NUM.ZERO;
+        price.groDAI_e_v1_5 = NUM.ZERO;
+        price.groUSDC_e_v1_5 = NUM.ZERO;
+        price.groUSDT_e_v1_5 = NUM.ZERO;
+        price.groDAI_e_v1_6 = NUM.ZERO;
+        price.groUSDC_e_v1_6 = NUM.ZERO;
+        price.groUSDT_e_v1_6 = NUM.ZERO;
+        price.groDAI_e_v1_7 = NUM.ZERO;
+        price.groUSDC_e_v1_7 = NUM.ZERO;
+        price.groUSDT_e_v1_7 = NUM.ZERO;
     }
     return price;
 }
@@ -108,7 +103,7 @@ function callPricePerShare<T>(contract: T, token: string): BigDecimal {
         const pps = contract.try_getPricePerShare();
         if (pps.reverted) {
             log.error('src/utils/price.ts->callPricePerShare(): call reverted on getPricePerShare()', []);
-            return ZERO;
+            return NUM.ZERO;
         } else {
             const base = token.includes('DAI')
                 ? 18
@@ -117,6 +112,6 @@ function callPricePerShare<T>(contract: T, token: string): BigDecimal {
         }
     } else {
         log.error('src/setters/price.ts->callPricePerShare(): no contract found', []);
-        return ZERO;
+        return NUM.ZERO;
     }
 }

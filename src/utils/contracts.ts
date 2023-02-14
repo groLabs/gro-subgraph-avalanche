@@ -2,19 +2,6 @@ import { contracts } from '../../addresses';
 import { ZERO_ADDR } from '../utils/constants';
 import { Address } from '@graphprotocol/graph-ts';
 
-const vaultDai_1_0_Address = Address.fromString(contracts.AVAXDAIVault_v1_0_Address);
-const vaultUsdc_1_0_Address = Address.fromString(contracts.AVAXUSDCVault_v1_0_Address);
-const vaultUsdt_1_0_Address = Address.fromString(contracts.AVAXUSDTVault_v1_0_Address);
-const vaultDai_1_5_Address = Address.fromString(contracts.AVAXDAIVault_v1_5_Address);
-const vaultUsdc_1_5_Address = Address.fromString(contracts.AVAXUSDCVault_v1_5_Address);
-const vaultUsdt_1_5_Address = Address.fromString(contracts.AVAXUSDTVault_v1_5_Address);
-const vaultDai_1_6_Address = Address.fromString(contracts.AVAXDAIVault_v1_6_Address);
-const vaultUsdc_1_6_Address = Address.fromString(contracts.AVAXUSDCVault_v1_6_Address);
-const vaultUsdt_1_6_Address = Address.fromString(contracts.AVAXUSDTVault_v1_6_Address);
-const vaultDai_1_7_Address = Address.fromString(contracts.AVAXDAIVault_v1_7_Address);
-const vaultUsdc_1_7_Address = Address.fromString(contracts.AVAXUSDCVault_v1_7_Address);
-const vaultUsdt_1_7_Address = Address.fromString(contracts.AVAXUSDTVault_v1_7_Address);
-
 
 export const isDepositOrWithdrawal = (
     from: Address,
@@ -43,3 +30,29 @@ export const isDepositOrWithdrawal = (
         return false;
     }
 }
+
+// Contract addresses
+export const vaultDai_1_0_Address = Address.fromString(contracts.AVAXDAIVault_v1_0_Address);
+export const vaultUsdc_1_0_Address = Address.fromString(contracts.AVAXUSDCVault_v1_0_Address);
+export const vaultUsdt_1_0_Address = Address.fromString(contracts.AVAXUSDTVault_v1_0_Address);
+export const vaultDai_1_5_Address = Address.fromString(contracts.AVAXDAIVault_v1_5_Address);
+export const vaultUsdc_1_5_Address = Address.fromString(contracts.AVAXUSDCVault_v1_5_Address);
+export const vaultUsdt_1_5_Address = Address.fromString(contracts.AVAXUSDTVault_v1_5_Address);
+export const vaultDai_1_6_Address = Address.fromString(contracts.AVAXDAIVault_v1_6_Address);
+export const vaultUsdc_1_6_Address = Address.fromString(contracts.AVAXUSDCVault_v1_6_Address);
+export const vaultUsdt_1_6_Address = Address.fromString(contracts.AVAXUSDTVault_v1_6_Address);
+export const vaultDai_1_7_Address = Address.fromString(contracts.AVAXDAIVault_v1_7_Address);
+export const vaultUsdc_1_7_Address = Address.fromString(contracts.AVAXUSDCVault_v1_7_Address);
+export const vaultUsdt_1_7_Address = Address.fromString(contracts.AVAXUSDTVault_v1_7_Address);
+export const stratDai_1_0_Address = Address.fromString(contracts.AVAXDAIStrategy_v1_0_Address);
+export const stratUsdc_1_0_Address = Address.fromString(contracts.AVAXUSDCStrategy_v1_0_Address);
+export const stratUsdt_1_0_Address = Address.fromString(contracts.AVAXUSDTStrategy_v1_0_Address);
+export const stratDai_1_5_Address = Address.fromString(contracts.AVAXDAIStrategy_v1_5_Address);
+export const stratUsdc_1_5_Address = Address.fromString(contracts.AVAXUSDCStrategy_v1_5_Address);
+export const stratUsdt_1_5_Address = Address.fromString(contracts.AVAXUSDTStrategy_v1_5_Address);
+export const stratDai_1_6_Address = Address.fromString(contracts.AVAXDAIStrategy_v1_6_Address);
+export const stratUsdc_1_6_Address = Address.fromString(contracts.AVAXUSDCStrategy_v1_6_Address);
+export const stratUsdt_1_6_Address = Address.fromString(contracts.AVAXUSDTStrategy_v1_6_Address);
+export const stratDai_1_7_Address = Address.fromString(contracts.AVAXDAIStrategy_v1_7_Address);
+export const stratUsdc_1_7_Address = Address.fromString(contracts.AVAXUSDCStrategy_v1_7_Address);
+export const stratUsdt_1_7_Address = Address.fromString(contracts.AVAXUSDTStrategy_v1_7_Address);

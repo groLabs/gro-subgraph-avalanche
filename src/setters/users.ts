@@ -1,9 +1,9 @@
+import { initMD } from '../setters/masterdata';
+import { initAllStrategies } from '../setters/strats';
 import {
     User,
     MasterData,
 } from '../../generated/schema';
-import { initMD } from '../setters/masterdata';
-import { initAllStrategies } from '../setters/strats';
 
 
 const initMasterDataOnce = (): void => {

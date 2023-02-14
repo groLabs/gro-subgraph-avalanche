@@ -1,12 +1,11 @@
+import { DECIMALS } from '../utils/constants';
 import { Bytes } from '@graphprotocol/graph-ts';
+import { TransferEvent } from '../types/transfer';
 import { TransferTx } from '../../generated/schema';
 import {
     tokenToDecimal,
     getPricePerShare,
 } from '../utils/tokens';
-import { TransferEvent } from '../types/transfer';
-import { DECIMALS } from '../utils/constants';
-// import { ONE, ZERO } from '../utils/constants';
 
 
 export const setTransferTx = (
@@ -23,13 +22,11 @@ export const setTransferTx = (
     let tx = new TransferTx(
         ev.id + transfer_tag
     );
-
     const base = token.includes('DAI')
         ? 18
         : 6;
     const coinAmount = tokenToDecimal(ev.value, base, 0);
     const pricePerShare = getPricePerShare(token);
-
     tx.contractAddress = ev.contractAddress;
     tx.block = ev.block.toI32();
     tx.timestamp = ev.timestamp.toI32();
@@ -43,7 +40,6 @@ export const setTransferTx = (
     tx.usdAmount = coinAmount.times(pricePerShare[2]).truncate(DECIMALS);
     tx.currentPricePerShare = pricePerShare[0].truncate(DECIMALS);
     tx.estimatedPricePerShare = pricePerShare[1].truncate(DECIMALS);
-
     tx.save();
     return tx;
 }
