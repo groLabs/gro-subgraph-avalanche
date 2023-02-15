@@ -2,8 +2,10 @@ specVersion: 0.0.5
 schema:
   file: ./schema.graphql
 dataSources:
-#@dev: all vaults include v1.7 in order to read totalAssets from a single v1.7 contract
-#********** Vaults 1.0 **********************************************************
+# *******************************************************************************************
+# ***********   V A U L T S   v1_0   ********************************************************
+# *******************************************************************************************
+# @dev: all vaults include v1_7 in order to read totalAssets from a single v1.7 contract
   - kind: ethereum/contract
     name: avaxdaivault_v1_0
     network: {{network}}
@@ -124,9 +126,9 @@ dataSources:
         - event: LogDepositLimit(uint256)
           handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_0.ts
-
-
-# ********** Vaults 1.5 **********************************************************
+# *******************************************************************************************
+# ***********   V A U L T S   v1_5   ********************************************************
+# *******************************************************************************************
   - kind: ethereum/contract
     name: avaxdaivault_v1_5
     network: {{network}}
@@ -247,9 +249,9 @@ dataSources:
         - event: LogDepositLimit(uint256)
           handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_5.ts
-
-
-#********** Vaults 1.6 **********************************************************
+# *******************************************************************************************
+# ***********   V A U L T S   v1_6   ********************************************************
+# *******************************************************************************************
   - kind: ethereum/contract
     name: avaxdaivault_v1_6
     network: {{network}}
@@ -370,9 +372,9 @@ dataSources:
         - event: LogDepositLimit(uint256)
           handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_6.ts
-
-
-#********** Vaults 1.7 **********************************************************
+# *******************************************************************************************
+# ***********   V A U L T S   v1_7   ********************************************************
+# *******************************************************************************************
   - kind: ethereum/contract
     name: avaxdaivault_v1_7
     network: {{network}}
@@ -487,140 +489,3 @@ dataSources:
         - event: LogDepositLimit(uint256)
           handler: handleDepositLimitUSDT
       file: ./src/mappings/labs_v1_7.ts
-
-
-
-#********** Strats 1.0 **********************************************************
-#   - kind: ethereum/contract
-#     name: avaxdaistrategy_v1_0
-#     network: {{network}}
-#     source:
-#       address: '{{AVAXDAIStrategy_v1_0_Address}}'
-#       abi: AHv2Farmer_v1_0
-#       startBlock: {{AVAXDAIStrategy_v1_0_StartBlock}}
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.7
-#       language: wasm/assemblyscript
-#       entities:
-#         - Price
-#       abis:
-#         - name: AHv2Farmer_v1_0
-#           file: ./abis/avalanche/AHv2Farmer_v1_0.json
-#         - name: VaultAdaptorMK2_v1_0
-#           file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
-#       eventHandlers:
-#         - event: Harvested(uint256,uint256,uint256,uint256)
-#           handler: handleHarvestedDAI
-#       file: ./src/mappings/strats_v1_0.ts
-#   - kind: ethereum/contract
-#     name: avaxusdcstrategy_v1_0
-#     network: {{network}}
-#     source:
-#       address: '{{AVAXUSDCStrategy_v1_0_Address}}'
-#       abi: AHv2Farmer_v1_0
-#       startBlock: {{AVAXUSDCStrategy_v1_0_StartBlock}}
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.7
-#       language: wasm/assemblyscript
-#       entities:
-#         - Price
-#       abis:
-#         - name: AHv2Farmer_v1_0
-#           file: ./abis/avalanche/AHv2Farmer_v1_0.json
-#         - name: VaultAdaptorMK2_v1_0
-#           file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
-#       eventHandlers:
-#         - event: Harvested(uint256,uint256,uint256,uint256)
-#           handler: handleHarvestedUSDC
-#       file: ./src/mappings/strats_v1_0.ts
-#   - kind: ethereum/contract
-#     name: avaxusdtstrategy_v1_0
-#     network: {{network}}
-#     source:
-#       address: '{{AVAXUSDTStrategy_v1_0_Address}}'
-#       abi: AHv2Farmer_v1_0
-#       startBlock: {{AVAXUSDTStrategy_v1_0_StartBlock}}
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.7
-#       language: wasm/assemblyscript
-#       entities:
-#         - Price
-#       abis:
-#         - name: AHv2Farmer_v1_0
-#           file: ./abis/avalanche/AHv2Farmer_v1_0.json
-#         - name: VaultAdaptorMK2_v1_0
-#           file: ./abis/avalanche/VaultAdaptorMK2_v1_0.json
-#       eventHandlers:
-#         - event: Harvested(uint256,uint256,uint256,uint256)
-#           handler: handleHarvestedUSDT
-#       file: ./src/mappings/strats_v1_0.ts
-# #********** Strats 1.7 **********************************************************
-#   - kind: ethereum/contract
-#     name: avaxdaistrategy_v1_7
-#     network: {{network}}
-#     source:
-#       address: '{{AVAXDAIStrategy_v1_7_Address}}'
-#       abi: AHv2Farmer_v1_7
-#       startBlock: {{AVAXDAIStrategy_v1_7_StartBlock}}
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.7
-#       language: wasm/assemblyscript
-#       entities:
-#         - Price
-#       abis:
-#         - name: AHv2Farmer_v1_7
-#           file: ./abis/avalanche/AHv2Farmer_v1_7.json
-#         - name: VaultAdaptorMK2_v1_7
-#           file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
-#       eventHandlers:
-#         - event: LogHarvested(uint256,uint256,uint256,uint256)
-#           handler: handleLogHarvestedDAI
-#       file: ./src/mappings/strats_v1_7.ts
-#   - kind: ethereum/contract
-#     name: avaxusdcstrategy_v1_7
-#     network: {{network}}
-#     source:
-#       address: '{{AVAXUSDCStrategy_v1_7_Address}}'
-#       abi: AHv2Farmer_v1_7
-#       startBlock: {{AVAXUSDCStrategy_v1_7_StartBlock}}
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.7
-#       language: wasm/assemblyscript
-#       entities:
-#         - Price
-#       abis:
-#         - name: AHv2Farmer_v1_7
-#           file: ./abis/avalanche/AHv2Farmer_v1_7.json
-#         - name: VaultAdaptorMK2_v1_7
-#           file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
-#       eventHandlers:
-#         - event: LogHarvested(uint256,uint256,uint256,uint256)
-#           handler: handleLogHarvestedUSDC
-#       file: ./src/mappings/strats_v1_7.ts
-#   - kind: ethereum/contract
-#     name: avaxusdtstrategy_v1_7
-#     network: {{network}}
-#     source:
-#       address: '{{AVAXUSDTStrategy_v1_7_Address}}'
-#       abi: AHv2Farmer_v1_7
-#       startBlock: {{AVAXUSDTStrategy_v1_7_StartBlock}}
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.7
-#       language: wasm/assemblyscript
-#       entities:
-#         - Price
-#       abis:
-#         - name: AHv2Farmer_v1_7
-#           file: ./abis/avalanche/AHv2Farmer_v1_7.json
-#         - name: VaultAdaptorMK2_v1_7
-#           file: ./abis/avalanche/VaultAdaptorMK2_v1_7.json
-#       eventHandlers:
-#         - event: LogHarvested(uint256,uint256,uint256,uint256)
-#           handler: handleLogHarvestedUSDT
-#       file: ./src/mappings/strats_v1_7.ts

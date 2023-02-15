@@ -1,17 +1,6 @@
 import { DECIMALS } from '../utils/constants';
-import { setStrategy } from '../setters/strats';
 import { tokenToDecimal } from '../utils/tokens';
-import { parseApprovalEvent } from '../parsers/approval';
-import { parseTransferEvent } from '../parsers/transfer';
-import { parseDepositEvent } from '../parsers/deposit';
-import { parseWithdrawalEvent } from '../parsers/withdrawal';
-import { manageApproval } from '../managers/approvals';
-import { manageTransfer } from '../managers/transfers';
-import { manageDeposit } from '../managers/deposits';
-import { manageWithdrawal } from '../managers/withdrawals';
-import { setLatestPrice } from '../setters/price';
 import { setDepositLimit } from '../setters/strats';
-import { isDepositOrWithdrawal } from '../utils/contracts';
 import {
     Approval as ApprovalEventDai,
     Transfer as TransferEventDai,
@@ -53,170 +42,133 @@ import {
     stratUsdc_1_5_Address,
     stratUsdt_1_5_Address,
 } from '../utils/contracts';
+import {
+    handleDeposit,
+    handleTransfer,
+    handleApproval,
+    handleWithdrawal,
+    handleStrategyReported,
+} from './labs_global_handlers';
 
 
-// Transfers
-export function handleTransferDAI(event: TransferEventDai): void {
-    if (!isDepositOrWithdrawal(
-        event.params.from,
-        event.params.to,
-        event.address
-    )) {
-        const ev = parseTransferEvent(event);
-        manageTransfer(ev, 'groDAI_e_vault_v1_5');
-    }
+// Transfers v1_5
+export function handleTransferDAI(ev: TransferEventDai): void {
+    handleTransfer(ev, 'groDAI_e_vault_v1_5');
 }
-export function handleTransferUSDC(event: TransferEventUsdc): void {
-    if (!isDepositOrWithdrawal(
-        event.params.from,
-        event.params.to,
-        event.address
-    )) {
-        const ev = parseTransferEvent(event);
-        manageTransfer(ev, 'groUSDC_e_vault_v1_5');
-    }
+export function handleTransferUSDC(ev: TransferEventUsdc): void {
+    handleTransfer(ev, 'groUSDC_e_vault_v1_5');
 }
-export function handleTransferUSDT(event: TransferEventUsdt): void {
-    if (!isDepositOrWithdrawal(
-        event.params.from,
-        event.params.to,
-        event.address
-    )) {
-        const ev = parseTransferEvent(event);
-        manageTransfer(ev, 'groUSDT_e_vault_v1_5');
-    }
+export function handleTransferUSDT(ev: TransferEventUsdt): void {
+    handleTransfer(ev, 'groUSDT_e_vault_v1_5');
 }
 
-// Approvals
-export function handleApprovaDAI(event: ApprovalEventDai): void {
-    const ev = parseApprovalEvent(event);
-    manageApproval(ev, 'groDAI_e_vault_v1_5');
+// Approvals v1_5
+export function handleApprovalDAI(ev: ApprovalEventDai): void {
+    handleApproval(ev, 'groDAI_e_vault_v1_5');
 }
-export function handleApprovalUSDC(event: ApprovalEventUsdc): void {
-    const ev = parseApprovalEvent(event);
-    manageApproval(ev, 'groUSDC_e_vault_v1_5');
+export function handleApprovalUSDC(ev: ApprovalEventUsdc): void {
+    handleApproval(ev, 'groUSDC_e_vault_v1_5');
 }
-export function handleApprovalUSDT(event: ApprovalEventUsdt): void {
-    const ev = parseApprovalEvent(event);
-    manageApproval(ev, 'groUSDT_e_vault_v1_5');
+export function handleApprovalUSDT(ev: ApprovalEventUsdt): void {
+    handleApproval(ev, 'groUSDT_e_vault_v1_5');
 }
 
-// Deposits
-export function handleDepositDAI(event: LogDepositEventDai): void {
-    setLatestPrice('groDAI_e_vault_v1_5');
-    const ev = parseDepositEvent(event);
-    manageDeposit(ev, 'groDAI_e_vault_v1_5');
+// Deposits v1_5
+export function handleDepositDAI(ev: LogDepositEventDai): void {
+    handleDeposit(ev, 'groDAI_e_vault_v1_5');
 }
-export function handleDepositUSDC(event: LogDepositEventUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_5');
-    const ev = parseDepositEvent(event);
-    manageDeposit(ev, 'groUSDC_e_vault_v1_5');
+export function handleDepositUSDC(ev: LogDepositEventUsdc): void {
+    handleDeposit(ev, 'groUSDC_e_vault_v1_5');
 }
-export function handleDepositUSDT(event: LogDepositEventUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_5');
-    const ev = parseDepositEvent(event);
-    manageDeposit(ev, 'groUSDT_e_vault_v1_5');
+export function handleDepositUSDT(ev: LogDepositEventUsdt): void {
+    handleDeposit(ev, 'groUSDT_e_vault_v1_5');
 }
 
-// Withdrawals
-export function handleWithdrawalDAI(event: LogWithdrawalDai): void {
-    setLatestPrice('groDAI_e_vault_v1_5');
-    const ev = parseWithdrawalEvent(event);
-    manageWithdrawal(ev, 'groDAI_e_vault_v1_5');
-    setStrategy(
+// Withdrawals v1_5
+export function handleWithdrawalDAI(ev: LogWithdrawalDai): void {
+    handleWithdrawal(
+        ev,
+        'groDAI_e_vault_v1_5',
         stratDai_1_5_Address,
         vaultDai_1_5_Address,
-        18,
     );
 }
-export function handleWithdrawalUSDC(event: LogWithdrawalUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_5');
-    const ev = parseWithdrawalEvent(event);
-    manageWithdrawal(ev, 'groUSDC_e_vault_v1_5');
-    setStrategy(
+export function handleWithdrawalUSDC(ev: LogWithdrawalUsdc): void {
+    handleWithdrawal(
+        ev,
+        'groUSDC_e_vault_v1_5',
         stratUsdc_1_5_Address,
         vaultUsdc_1_5_Address,
-        6,
     );
 }
-export function handleWithdrawalUSDT(event: LogWithdrawalUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_5');
-    const ev = parseWithdrawalEvent(event);
-    manageWithdrawal(ev, 'groUSDT_e_vault_v1_5');
-    setStrategy(
+export function handleWithdrawalUSDT(ev: LogWithdrawalUsdt): void {
+    handleWithdrawal(
+        ev,
+        'groUSDT_e_vault_v1_5',
         stratUsdt_1_5_Address,
         vaultUsdt_1_5_Address,
-        6,
     );
 }
 
-// Strategy Harvests
+// Strategy Harvests v1_5
 export function handleStrategyReportedDAI(event: LogStrategyReportedDai): void {
-    setLatestPrice('groDAI_e_vault_v1_5');
-    setStrategy(
+    handleStrategyReported(
+        'groDAI_e_vault_v1_5',
         stratDai_1_5_Address,
         vaultDai_1_5_Address,
-        18,
     );
 }
 export function handleStrategyReportedUSDC(event: LogStrategyReportedUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_5');
-    setStrategy(
+    handleStrategyReported(
+        'groUSDC_e_vault_v1_5',
         stratUsdc_1_5_Address,
         vaultUsdc_1_5_Address,
-        6,
     );
 }
 export function handleStrategyReportedUSDT(event: LogStrategyReportedUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_5');
-    setStrategy(
+    handleStrategyReported(
+        'groUSDT_e_vault_v1_5',
         stratUsdt_1_5_Address,
         vaultUsdt_1_5_Address,
-        6,
     );
 }
 
-// New Strategy Harvest
+// New Strategy Harvests v1_5
 export function handleNewStrategyHarvestDAI(event: LogNewStrategyHarvestDai): void {
-    setLatestPrice('groDAI_e_vault_v1_5');
-    setStrategy(
+    handleStrategyReported(
+        'groDAI_e_vault_v1_5',
         stratDai_1_5_Address,
         vaultDai_1_5_Address,
-        18,
     );
 }
 export function handleNewStrategyHarvestUSDC(event: LogNewStrategyHarvestUsdc): void {
-    setLatestPrice('groUSDC_e_vault_v1_5');
-    setStrategy(
+    handleStrategyReported(
+        'groUSDC_e_vault_v1_5',
         stratUsdc_1_5_Address,
         vaultUsdc_1_5_Address,
-        6,
     );
 }
 export function handleNewStrategyHarvestUSDT(event: LogNewStrategyHarvestUsdt): void {
-    setLatestPrice('groUSDT_e_vault_v1_5');
-    setStrategy(
+    handleStrategyReported(
+        'groUSDT_e_vault_v1_5',
         stratUsdt_1_5_Address,
         vaultUsdt_1_5_Address,
-        6,
     );
 }
 
-// Deposit Limit
+// Deposit Limit v1_5
 export function handleDepositLimitDAI(event: LogDepositLimitDai): void {
     setDepositLimit(
         stratDai_1_5_Address,
         tokenToDecimal(event.params.newLimit, 18, DECIMALS),
     );
 }
-
 export function handleDepositLimitUSDC(event: LogDepositLimitUsdc): void {
     setDepositLimit(
         stratUsdc_1_5_Address,
         tokenToDecimal(event.params.newLimit, 6, DECIMALS),
     );
 }
-
 export function handleDepositLimitUSDT(event: LogDepositLimitUsdt): void {
     setDepositLimit(
         stratUsdt_1_5_Address,
