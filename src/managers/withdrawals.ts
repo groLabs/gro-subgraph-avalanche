@@ -3,6 +3,7 @@ import { setDepoWithdrawTx } from '../setters/depowithdraw';
 import { DepoWithdraw } from '../types/depowithdraw';
 import { setTotals } from '../setters/totals';
 
+
 // Withdrawal from Labs
 export const manageWithdrawal = (
     ev: DepoWithdraw,
@@ -19,8 +20,8 @@ export const manageWithdrawal = (
     setTotals(
         'core_withdrawal',
         token,
-        tx.userAddress,
-        tx.coinAmount,
-        tx.usdAmount,
+        tx.user_address,
+        tx.coin_amount,
+        tx.usd_amount,
     );
 }

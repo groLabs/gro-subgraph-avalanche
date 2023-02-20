@@ -7,9 +7,9 @@ export const initMD = (): MasterData => {
     if (!md) {
         md = new MasterData('0x');
         md.status = 'ok';
-        md.networkId = i32(43114);
-        md.networkName = 'avalanche';
-        md.launchTimestamp = i32(LAUNCH_TIMESTAMP_AVAX);
+        md.network_id = i32(43114);
+        md.network_name = 'avalanche';
+        md.launch_timestamp = i32(LAUNCH_TIMESTAMP_AVAX);
     }
     return md;
 }

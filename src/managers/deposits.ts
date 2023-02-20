@@ -20,8 +20,8 @@ export const manageDeposit = (
     setTotals(
         'core_deposit',
         token,
-        tx.userAddress,
-        tx.coinAmount,
-        tx.usdAmount,
+        tx.user_address,
+        tx.coin_amount,
+        tx.usd_amount,
     );
 }

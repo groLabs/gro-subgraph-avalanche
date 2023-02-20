@@ -41,11 +41,11 @@ enum NetworkName {
 
 # master data
 type MasterData  @entity {
-    id: ID! # 0x
-    status: Status!
-    networkId: Int!
-    networkName: NetworkName!
-    launchTimestamp: Int!
+  id: ID! # 0x
+  status: Status!
+  network_id: Int!
+  network_name: NetworkName!
+  launch_timestamp: Int!
 }
 
 type Strategy @entity {
@@ -70,15 +70,15 @@ type Strategy @entity {
 type User @entity {
   id: ID! # userAddress
   timestamp: Int
-  transfers: [TransferTx!] @derivedFrom(field: "userAddress")
-  approvals: [ApprovalTx!] @derivedFrom(field: "ownerAddress")
-  totals: Totals! @derivedFrom(field: "userAddress")
+  transfers: [TransferTx!] @derivedFrom(field: "user_address")
+  approvals: [ApprovalTx!] @derivedFrom(field: "owner_address")
+  totals: Totals! @derivedFrom(field: "user_address")
 }
 
 # aggregated amounts for personal stats
 type Totals @entity {
   id: ID! # userAddress
-  userAddress: User! # FK to User
+  user_address: User! # FK to User
   # Coin amounts
   amount_added_groDAI_e_v1_0: BigDecimal!
   amount_added_groUSDC_e_v1_0: BigDecimal!
@@ -183,32 +183,32 @@ type Price @entity {
 # vault transfers between users
 type TransferTx @entity {
   id: ID! # hash-logIndex(-in|-out)
-  contractAddress: Bytes!
-  block: Int! 
-  timestamp: Int!
+  contract_address: Bytes!
+  block_number: Int! 
+  block_timestamp: Int!
   hash: Bytes!
   type: TxType!
   token: Token!
-  userAddress: User!  # FK to User
-  fromAddress: Bytes!
-  toAddress: Bytes!
-  coinAmount: BigDecimal!
-  usdAmount: BigDecimal!
-  currentPricePerShare: BigDecimal!
-  estimatedPricePerShare: BigDecimal!
+  user_address: User!  # FK to User
+  from_address: Bytes!
+  to_address: Bytes!
+  coin_amount: BigDecimal!
+  usd_amount: BigDecimal!
+  current_price_per_share: BigDecimal!
+  estimated_price_per_share: BigDecimal!
 }
 
 # vault approvals
 type ApprovalTx @entity {
   id: ID! # hash-logIndex
-  contractAddress: Bytes!
-  block: Int! 
-  timestamp: Int!
+  contract_address: Bytes!
+  block_number: Int! 
+  block_timestamp: Int!
   hash: Bytes!
   type: TxType!
   token: Token!
-  ownerAddress: User!  # FK to User
-  spenderAddress: Bytes
-  coinAmount: BigDecimal!
-  usdAmount: BigDecimal!
+  owner_address: User!  # FK to User
+  spender_address: Bytes
+  coin_amount: BigDecimal!
+  usd_amount: BigDecimal!
 }

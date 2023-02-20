@@ -27,8 +27,8 @@ function buildTransfer(
         type,
         token,
         userAddress,
-        tx.coinAmount,
-        tx.usdAmount,
+        tx.coin_amount,
+        tx.usd_amount,
     );
 }
 

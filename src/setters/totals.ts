@@ -7,7 +7,7 @@ const initTotals = (userAddress: string): Totals => {
     let total = Totals.load(userAddress);
     if (!total) {
         total = new Totals(userAddress);
-        total.userAddress = userAddress;
+        total.user_address = userAddress;
         total.amount_added_groDAI_e_v1_0 = NUM.ZERO;
         total.amount_added_groUSDC_e_v1_0 = NUM.ZERO;
         total.amount_added_groUSDT_e_v1_0 = NUM.ZERO;
