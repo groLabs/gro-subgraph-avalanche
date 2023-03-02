@@ -1,214 +1,213 @@
 # Enums
 
 enum Token {
-  unknown
-  dai_e
-  usdc_e
-  usdt_e
-  groDAI_e_vault_v1_0
-  groUSDC_e_vault_v1_0
-  groUSDT_e_vault_v1_0
-  groDAI_e_vault_v1_5
-  groUSDC_e_vault_v1_5
-  groUSDT_e_vault_v1_5
-  groDAI_e_vault_v1_6
-  groUSDC_e_vault_v1_6
-  groUSDT_e_vault_v1_6
-  groDAI_e_vault_v1_7
-  groUSDC_e_vault_v1_7
-  groUSDT_e_vault_v1_7
+    unknown
+    dai_e
+    usdc_e
+    usdt_e
+    groDAI_e_vault_v1_0
+    groUSDC_e_vault_v1_0
+    groUSDT_e_vault_v1_0
+    groDAI_e_vault_v1_5
+    groUSDC_e_vault_v1_5
+    groUSDT_e_vault_v1_5
+    groDAI_e_vault_v1_6
+    groUSDC_e_vault_v1_6
+    groUSDT_e_vault_v1_6
+    groDAI_e_vault_v1_7
+    groUSDC_e_vault_v1_7
+    groUSDT_e_vault_v1_7
 }
 
 enum TxType {
-  core_deposit
-  core_withdrawal
-  transfer_in
-  transfer_out
-  approval
+    core_deposit
+    core_withdrawal
+    transfer_in
+    transfer_out
+    approval
 }
 
 enum Status {
-  ok
-  error
+	ok
+	error
 }
 
 enum NetworkName {
-  mainnet
-  avalanche
+	mainnet
+	avalanche
 }
 
 # Entities
 
 # master data
 type MasterData  @entity {
-  id: ID! # 0x
-  status: Status!
-  network_id: Int!
-  network_name: NetworkName!
-  launch_timestamp: Int!
+	id: ID! # 0x
+	status: Status!
+	network_id: Int!
+	network_name: NetworkName!
+	launch_timestamp: Int!
 }
 
 type Strategy @entity {
-  id: ID! #strategy address
-  coin: String!
-  metacoin: String!
-  protocol: String!
-  strat_name: String!
-  strat_display_name: String!
-  vault_name: String!
-  vault_display_name: String!
-  vault_address: Bytes!
-  total_assets_strategy: BigDecimal!
-  total_assets_vault: BigDecimal!
-  strategy_debt: BigDecimal!
-  tvl_cap: BigDecimal!
-  order: Int!
-  # harvests: [GVaultHarvest!] @derivedFrom(field: "strategyAddress")
+	id: ID! #strategy address
+	coin: String!
+	metacoin: String!
+	protocol: String!
+	strat_name: String!
+	strat_display_name: String!
+	vault_name: String!
+	vault_display_name: String!
+	vault_address: Bytes!
+	total_assets_strategy: BigDecimal!
+	total_assets_vault: BigDecimal!
+	strategy_debt: BigDecimal!
+	tvl_cap: BigDecimal!
+	order: Int!
 }
 
 # user
 type User @entity {
-  id: ID! # userAddress
-  timestamp: Int
-  transfers: [TransferTx!] @derivedFrom(field: "user_address")
-  approvals: [ApprovalTx!] @derivedFrom(field: "owner_address")
-  totals: Totals! @derivedFrom(field: "user_address")
+	id: ID! # userAddress
+	timestamp: Int
+	transfers: [TransferTx!] @derivedFrom(field: "user_address")
+	approvals: [ApprovalTx!] @derivedFrom(field: "owner_address")
+	totals: Totals! @derivedFrom(field: "user_address")
 }
 
 # aggregated amounts for personal stats
 type Totals @entity {
-  id: ID! # userAddress
-  user_address: User! # FK to User
-  # Coin amounts
-  amount_added_groDAI_e_v1_0: BigDecimal!
-  amount_added_groUSDC_e_v1_0: BigDecimal!
-  amount_added_groUSDT_e_v1_0: BigDecimal!
-  amount_added_groDAI_e_v1_5: BigDecimal!
-  amount_added_groUSDC_e_v1_5: BigDecimal!
-  amount_added_groUSDT_e_v1_5: BigDecimal!
-  amount_added_groDAI_e_v1_6: BigDecimal!
-  amount_added_groUSDC_e_v1_6: BigDecimal!
-  amount_added_groUSDT_e_v1_6: BigDecimal!
-  amount_added_groDAI_e_v1_7: BigDecimal!
-  amount_added_groUSDC_e_v1_7: BigDecimal!
-  amount_added_groUSDT_e_v1_7: BigDecimal!
+	id: ID! # userAddress
+	user_address: User! # FK to User
+	# Coin amounts
+	amount_added_groDAI_e_v1_0: BigDecimal!
+	amount_added_groUSDC_e_v1_0: BigDecimal!
+	amount_added_groUSDT_e_v1_0: BigDecimal!
+	amount_added_groDAI_e_v1_5: BigDecimal!
+	amount_added_groUSDC_e_v1_5: BigDecimal!
+	amount_added_groUSDT_e_v1_5: BigDecimal!
+	amount_added_groDAI_e_v1_6: BigDecimal!
+	amount_added_groUSDC_e_v1_6: BigDecimal!
+	amount_added_groUSDT_e_v1_6: BigDecimal!
+	amount_added_groDAI_e_v1_7: BigDecimal!
+	amount_added_groUSDC_e_v1_7: BigDecimal!
+	amount_added_groUSDT_e_v1_7: BigDecimal!
 
-  amount_removed_groDAI_e_v1_0: BigDecimal!
-  amount_removed_groUSDC_e_v1_0: BigDecimal!
-  amount_removed_groUSDT_e_v1_0: BigDecimal!
-  amount_removed_groDAI_e_v1_5: BigDecimal!
-  amount_removed_groUSDC_e_v1_5: BigDecimal!
-  amount_removed_groUSDT_e_v1_5: BigDecimal!
-  amount_removed_groDAI_e_v1_6: BigDecimal!
-  amount_removed_groUSDC_e_v1_6: BigDecimal!
-  amount_removed_groUSDT_e_v1_6: BigDecimal!
-  amount_removed_groDAI_e_v1_7: BigDecimal!
-  amount_removed_groUSDC_e_v1_7: BigDecimal!
-  amount_removed_groUSDT_e_v1_7: BigDecimal!
+	amount_removed_groDAI_e_v1_0: BigDecimal!
+	amount_removed_groUSDC_e_v1_0: BigDecimal!
+	amount_removed_groUSDT_e_v1_0: BigDecimal!
+	amount_removed_groDAI_e_v1_5: BigDecimal!
+	amount_removed_groUSDC_e_v1_5: BigDecimal!
+	amount_removed_groUSDT_e_v1_5: BigDecimal!
+	amount_removed_groDAI_e_v1_6: BigDecimal!
+	amount_removed_groUSDC_e_v1_6: BigDecimal!
+	amount_removed_groUSDT_e_v1_6: BigDecimal!
+	amount_removed_groDAI_e_v1_7: BigDecimal!
+	amount_removed_groUSDC_e_v1_7: BigDecimal!
+	amount_removed_groUSDT_e_v1_7: BigDecimal!
 
-  net_amount_groDAI_e_v1_0: BigDecimal!
-  net_amount_groUSDC_e_v1_0: BigDecimal!
-  net_amount_groUSDT_e_v1_0: BigDecimal!
-  net_amount_groDAI_e_v1_5: BigDecimal!
-  net_amount_groUSDC_e_v1_5: BigDecimal!
-  net_amount_groUSDT_e_v1_5: BigDecimal!
-  net_amount_groDAI_e_v1_6: BigDecimal!
-  net_amount_groUSDC_e_v1_6: BigDecimal!
-  net_amount_groUSDT_e_v1_6: BigDecimal!
-  net_amount_groDAI_e_v1_7: BigDecimal!
-  net_amount_groUSDC_e_v1_7: BigDecimal!
-  net_amount_groUSDT_e_v1_7: BigDecimal!
+	net_amount_groDAI_e_v1_0: BigDecimal!
+	net_amount_groUSDC_e_v1_0: BigDecimal!
+	net_amount_groUSDT_e_v1_0: BigDecimal!
+	net_amount_groDAI_e_v1_5: BigDecimal!
+	net_amount_groUSDC_e_v1_5: BigDecimal!
+	net_amount_groUSDT_e_v1_5: BigDecimal!
+	net_amount_groDAI_e_v1_6: BigDecimal!
+	net_amount_groUSDC_e_v1_6: BigDecimal!
+	net_amount_groUSDT_e_v1_6: BigDecimal!
+	net_amount_groDAI_e_v1_7: BigDecimal!
+	net_amount_groUSDC_e_v1_7: BigDecimal!
+	net_amount_groUSDT_e_v1_7: BigDecimal!
 
-  # USD value
-  value_added_groDAI_e_v1_0: BigDecimal!
-  value_added_groUSDC_e_v1_0: BigDecimal!
-  value_added_groUSDT_e_v1_0: BigDecimal!
-  value_added_groDAI_e_v1_5: BigDecimal!
-  value_added_groUSDC_e_v1_5: BigDecimal!
-  value_added_groUSDT_e_v1_5: BigDecimal!
-  value_added_groDAI_e_v1_6: BigDecimal!
-  value_added_groUSDC_e_v1_6: BigDecimal!
-  value_added_groUSDT_e_v1_6: BigDecimal!
-  value_added_groDAI_e_v1_7: BigDecimal!
-  value_added_groUSDC_e_v1_7: BigDecimal!
-  value_added_groUSDT_e_v1_7: BigDecimal!
-  value_added_total: BigDecimal!
+	# USD value
+	value_added_groDAI_e_v1_0: BigDecimal!
+	value_added_groUSDC_e_v1_0: BigDecimal!
+	value_added_groUSDT_e_v1_0: BigDecimal!
+	value_added_groDAI_e_v1_5: BigDecimal!
+	value_added_groUSDC_e_v1_5: BigDecimal!
+	value_added_groUSDT_e_v1_5: BigDecimal!
+	value_added_groDAI_e_v1_6: BigDecimal!
+	value_added_groUSDC_e_v1_6: BigDecimal!
+	value_added_groUSDT_e_v1_6: BigDecimal!
+	value_added_groDAI_e_v1_7: BigDecimal!
+	value_added_groUSDC_e_v1_7: BigDecimal!
+	value_added_groUSDT_e_v1_7: BigDecimal!
+	value_added_total: BigDecimal!
 
-  value_removed_groDAI_e_v1_0: BigDecimal!
-  value_removed_groUSDC_e_v1_0: BigDecimal!
-  value_removed_groUSDT_e_v1_0: BigDecimal!
-  value_removed_groDAI_e_v1_5: BigDecimal!
-  value_removed_groUSDC_e_v1_5: BigDecimal!
-  value_removed_groUSDT_e_v1_5: BigDecimal!
-  value_removed_groDAI_e_v1_6: BigDecimal!
-  value_removed_groUSDC_e_v1_6: BigDecimal!
-  value_removed_groUSDT_e_v1_6: BigDecimal!
-  value_removed_groDAI_e_v1_7: BigDecimal!
-  value_removed_groUSDC_e_v1_7: BigDecimal!
-  value_removed_groUSDT_e_v1_7: BigDecimal!
-  value_removed_total: BigDecimal!
+	value_removed_groDAI_e_v1_0: BigDecimal!
+	value_removed_groUSDC_e_v1_0: BigDecimal!
+	value_removed_groUSDT_e_v1_0: BigDecimal!
+	value_removed_groDAI_e_v1_5: BigDecimal!
+	value_removed_groUSDC_e_v1_5: BigDecimal!
+	value_removed_groUSDT_e_v1_5: BigDecimal!
+	value_removed_groDAI_e_v1_6: BigDecimal!
+	value_removed_groUSDC_e_v1_6: BigDecimal!
+	value_removed_groUSDT_e_v1_6: BigDecimal!
+	value_removed_groDAI_e_v1_7: BigDecimal!
+	value_removed_groUSDC_e_v1_7: BigDecimal!
+	value_removed_groUSDT_e_v1_7: BigDecimal!
+	value_removed_total: BigDecimal!
 
-  net_value_groDAI_e_v1_0: BigDecimal!
-  net_value_groUSDC_e_v1_0: BigDecimal!
-  net_value_groUSDT_e_v1_0: BigDecimal!
-  net_value_groDAI_e_v1_5: BigDecimal!
-  net_value_groUSDC_e_v1_5: BigDecimal!
-  net_value_groUSDT_e_v1_5: BigDecimal!
-  net_value_groDAI_e_v1_6: BigDecimal!
-  net_value_groUSDC_e_v1_6: BigDecimal!
-  net_value_groUSDT_e_v1_6: BigDecimal!
-  net_value_groDAI_e_v1_7: BigDecimal!
-  net_value_groUSDC_e_v1_7: BigDecimal!
-  net_value_groUSDT_e_v1_7: BigDecimal!
-  net_value_total: BigDecimal!
+	net_value_groDAI_e_v1_0: BigDecimal!
+	net_value_groUSDC_e_v1_0: BigDecimal!
+	net_value_groUSDT_e_v1_0: BigDecimal!
+	net_value_groDAI_e_v1_5: BigDecimal!
+	net_value_groUSDC_e_v1_5: BigDecimal!
+	net_value_groUSDT_e_v1_5: BigDecimal!
+	net_value_groDAI_e_v1_6: BigDecimal!
+	net_value_groUSDC_e_v1_6: BigDecimal!
+	net_value_groUSDT_e_v1_6: BigDecimal!
+	net_value_groDAI_e_v1_7: BigDecimal!
+	net_value_groUSDC_e_v1_7: BigDecimal!
+	net_value_groUSDT_e_v1_7: BigDecimal!
+	net_value_total: BigDecimal!
 }
 
 # latest token price
 type Price @entity {
-  id: ID!
-  groDAI_e_v1_0: BigDecimal!
-  groUSDC_e_v1_0: BigDecimal!
-  groUSDT_e_v1_0: BigDecimal!
-  groDAI_e_v1_5: BigDecimal!
-  groUSDC_e_v1_5: BigDecimal!
-  groUSDT_e_v1_5: BigDecimal!
-  groDAI_e_v1_6: BigDecimal!
-  groUSDC_e_v1_6: BigDecimal!
-  groUSDT_e_v1_6: BigDecimal!
-  groDAI_e_v1_7: BigDecimal!
-  groUSDC_e_v1_7: BigDecimal!
-  groUSDT_e_v1_7: BigDecimal!
+	id: ID!
+	groDAI_e_v1_0: BigDecimal!
+	groUSDC_e_v1_0: BigDecimal!
+	groUSDT_e_v1_0: BigDecimal!
+	groDAI_e_v1_5: BigDecimal!
+	groUSDC_e_v1_5: BigDecimal!
+	groUSDT_e_v1_5: BigDecimal!
+	groDAI_e_v1_6: BigDecimal!
+	groUSDC_e_v1_6: BigDecimal!
+	groUSDT_e_v1_6: BigDecimal!
+	groDAI_e_v1_7: BigDecimal!
+	groUSDC_e_v1_7: BigDecimal!
+	groUSDT_e_v1_7: BigDecimal!
 }
 
 # vault transfers between users
-type TransferTx @entity {
-  id: ID! # hash-logIndex(-in|-out)
-  contract_address: Bytes!
-  block_number: Int! 
-  block_timestamp: Int!
-  hash: Bytes!
-  type: TxType!
-  token: Token!
-  user_address: User!  # FK to User
-  from_address: Bytes!
-  to_address: Bytes!
-  coin_amount: BigDecimal!
-  usd_amount: BigDecimal!
-  current_price_per_share: BigDecimal!
-  estimated_price_per_share: BigDecimal!
+type TransferTx @entity(immutable: true) {
+	id: ID! # hash-logIndex(-in|-out)
+	contract_address: Bytes!
+	block_number: Int! 
+	block_timestamp: Int!
+	hash: Bytes!
+	type: TxType!
+	token: Token!
+	user_address: User!  # FK to User
+	from_address: Bytes!
+	to_address: Bytes!
+	coin_amount: BigDecimal!
+	usd_amount: BigDecimal!
+	current_price_per_share: BigDecimal!
+	estimated_price_per_share: BigDecimal!
 }
 
 # vault approvals
-type ApprovalTx @entity {
-  id: ID! # hash-logIndex
-  contract_address: Bytes!
-  block_number: Int! 
-  block_timestamp: Int!
-  hash: Bytes!
-  type: TxType!
-  token: Token!
-  owner_address: User!  # FK to User
-  spender_address: Bytes
-  coin_amount: BigDecimal!
-  usd_amount: BigDecimal!
+type ApprovalTx @entity(immutable: true) {
+	id: ID! # hash-logIndex
+	contract_address: Bytes!
+	block_number: Int! 
+	block_timestamp: Int!
+	hash: Bytes!
+	type: TxType!
+	token: Token!
+	owner_address: User!  # FK to User
+	spender_address: Bytes
+	coin_amount: BigDecimal!
+	usd_amount: BigDecimal!
 }
