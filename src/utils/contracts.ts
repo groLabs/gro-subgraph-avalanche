@@ -1,5 +1,5 @@
 import { contracts } from '../../addresses';
-import { ZERO_ADDR } from '../utils/constants';
+import { ADDR } from '../utils/constants';
 import { Address } from '@graphprotocol/graph-ts';
 
 
@@ -9,7 +9,7 @@ export const isDepositOrWithdrawal = (
     contract: Address
 ): bool => {
     if (
-        (from == ZERO_ADDR || to == ZERO_ADDR)
+        (from == ADDR.ZERO || to == ADDR.ZERO)
         && (
             contract == vaultDai_1_0_Address
             || contract == vaultUsdc_1_0_Address

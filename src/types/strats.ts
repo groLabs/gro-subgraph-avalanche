@@ -1,6 +1,8 @@
+import { Bytes } from '@graphprotocol/graph-ts';
+
 export class Strategy {
-    id: string
-    vault: string
+    id: Bytes
+    vault: Bytes
     strat_name: string
     strat_display_name: string
     vault_name: string
@@ -12,8 +14,8 @@ export class Strategy {
     active: boolean
     order: number
     constructor(
-        id: string,
-        vault: string,
+        id: Bytes,
+        vault: Bytes,
         strat_name: string,
         strat_display_name: string,
         vault_name: string,

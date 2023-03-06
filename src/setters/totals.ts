@@ -1,9 +1,12 @@
-import { BigDecimal } from '@graphprotocol/graph-ts';
-import { Totals } from '../../generated/schema';
+import {
+    Bytes,
+    BigDecimal,
+} from '@graphprotocol/graph-ts';
 import { NUM } from '../utils/constants';
+import { Totals } from '../../generated/schema';
 
 
-const initTotals = (userAddress: string): Totals => {
+const initTotals = (userAddress: Bytes): Totals => {
     let total = Totals.load(userAddress);
     if (!total) {
         total = new Totals(userAddress);
@@ -95,7 +98,7 @@ const initTotals = (userAddress: string): Totals => {
 export const setTotals = (
     type: string,
     coin: string,
-    userAddress: string,
+    userAddress: Bytes,
     coinAmount: BigDecimal,
     usdAmount: BigDecimal,
 ): void => {

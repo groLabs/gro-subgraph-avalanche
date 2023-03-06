@@ -1,8 +1,7 @@
 import { NUM } from '../utils/constants';
-import { Bytes } from '@graphprotocol/graph-ts';
-import { ApprovalTx } from '../../generated/schema';
 import { tokenToDecimal } from '../utils/tokens';
 import { ApprovalEvent } from '../types/approval';
+import { ApprovalTx } from '../../generated/schema';
 
 
 export const setApprovalTx = (
@@ -18,11 +17,10 @@ export const setApprovalTx = (
     tx.block_timestamp = ev.timestamp.toI32();
     tx.token = token;
     tx.type = 'approval';
-    tx.hash = Bytes.fromHexString(ev.id.split('-')[0]);
+    tx.hash = ev.hash;
     tx.coin_amount = coinAmount;
     tx.usd_amount = coinAmount.times(NUM.ONE); // TBD
     tx.spender_address = ev.spenderAddress;
     tx.save();
     return tx;
 }
-

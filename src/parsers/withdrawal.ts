@@ -1,18 +1,20 @@
 // @ts-nocheck
+import { ADDR } from '../utils/constants';
 import { DepoWithdraw } from '../types/depowithdraw';
-import { ZERO_ADDR } from '../utils/constants';
 
 
 export function parseWithdrawalEvent<T>(ev: T): DepoWithdraw {
+    const logIndex = ev.logIndex.toI32();
     const event = new DepoWithdraw(
-        ev.transaction.hash.toHex() + "-" + ev.logIndex.toString(),
+        ev.transaction.hash.concatI32(logIndex),
         ev.block.number.toI32(),
         ev.block.timestamp.toI32(),
+        ev.transaction.hash,
         ev.address,
         'core_withdrawal',
-        ev.params.from.toHexString(),   // links with User.id,
+        ev.params.from,                 // links with User.id,
         ev.params.from,                 // from
-        ZERO_ADDR,                      // to
+        ADDR.ZERO,                      // to
         ev.params.shares,               // coinAmount
         ev.params.value,                // usdAmount
     )

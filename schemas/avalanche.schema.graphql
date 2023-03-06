@@ -40,8 +40,8 @@ enum NetworkName {
 # Entities
 
 # master data
-type MasterData  @entity {
-	id: ID! # 0x
+type MasterData @entity(immutable: true) {
+	id: Bytes! # 0x
 	status: Status!
 	network_id: Int!
 	network_name: NetworkName!
@@ -49,7 +49,7 @@ type MasterData  @entity {
 }
 
 type Strategy @entity {
-	id: ID! #strategy address
+	id: Bytes! #strategy address
 	coin: String!
 	metacoin: String!
 	protocol: String!
@@ -67,7 +67,7 @@ type Strategy @entity {
 
 # user
 type User @entity {
-	id: ID! # userAddress
+	id: Bytes! # userAddress
 	timestamp: Int
 	transfers: [TransferTx!] @derivedFrom(field: "user_address")
 	approvals: [ApprovalTx!] @derivedFrom(field: "owner_address")
@@ -76,7 +76,7 @@ type User @entity {
 
 # aggregated amounts for personal stats
 type Totals @entity {
-	id: ID! # userAddress
+	id: Bytes! # userAddress
 	user_address: User! # FK to User
 	# Coin amounts
 	amount_added_groDAI_e_v1_0: BigDecimal!
@@ -164,7 +164,7 @@ type Totals @entity {
 
 # latest token price
 type Price @entity {
-	id: ID!
+	id: Bytes!
 	groDAI_e_v1_0: BigDecimal!
 	groUSDC_e_v1_0: BigDecimal!
 	groUSDT_e_v1_0: BigDecimal!
@@ -181,7 +181,7 @@ type Price @entity {
 
 # vault transfers between users
 type TransferTx @entity(immutable: true) {
-	id: ID! # hash-logIndex(-in|-out)
+	id: Bytes! # hash-logIndex(0|1) -> same tx generates two records, transfer in & transfer out
 	contract_address: Bytes!
 	block_number: Int! 
 	block_timestamp: Int!
@@ -199,7 +199,7 @@ type TransferTx @entity(immutable: true) {
 
 # vault approvals
 type ApprovalTx @entity(immutable: true) {
-	id: ID! # hash-logIndex
+	id: Bytes! # hash-logIndex
 	contract_address: Bytes!
 	block_number: Int! 
 	block_timestamp: Int!

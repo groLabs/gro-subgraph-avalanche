@@ -1,11 +1,14 @@
 import { MasterData } from '../../generated/schema';
-import { LAUNCH_TIMESTAMP_AVAX } from '../utils/constants';
+import {
+    ADDR,
+    LAUNCH_TIMESTAMP_AVAX,
+} from '../utils/constants';
 
 
 export const initMD = (): MasterData => {
-    let md = MasterData.load('0x');
+    let md = MasterData.load(ADDR.ZERO);
     if (!md) {
-        md = new MasterData('0x');
+        md = new MasterData(ADDR.ZERO);
         md.status = 'ok';
         md.network_id = i32(43114);
         md.network_name = 'avalanche';

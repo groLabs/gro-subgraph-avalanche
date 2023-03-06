@@ -1,5 +1,4 @@
 import { DECIMALS } from '../utils/constants';
-import { Bytes } from '@graphprotocol/graph-ts';
 import { TransferTx } from '../../generated/schema';
 import { DepoWithdraw } from '../types/depowithdraw';
 import {
@@ -24,7 +23,7 @@ export const setDepoWithdrawTx = (
     tx.block_timestamp = ev.timestamp;
     tx.token = token;
     tx.type = ev.type;
-    tx.hash = Bytes.fromHexString(ev.id.split('-')[0]);
+    tx.hash = ev.hash;
     tx.user_address = ev.userAddress;
     tx.from_address = ev.fromAddress;
     tx.to_address = ev.toAddress;

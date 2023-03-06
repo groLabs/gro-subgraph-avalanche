@@ -1,7 +1,9 @@
-import { Num } from '../types/constants';
+import {
+    Num,
+    Addr,
+} from '../types/constants';
 import {
     Bytes,
-    Address,
     BigDecimal,
 } from "@graphprotocol/graph-ts";
 
@@ -19,5 +21,6 @@ export const NUM: Num = {
 }
 
 // Addresses
-export const NO_ADDR = Bytes.empty();
-export const ZERO_ADDR = Address.fromString('0x0000000000000000000000000000000000000000');
+export const ADDR: Addr = {
+    ZERO: Bytes.fromHexString('0x0000000000000000000000000000000000000000'),
+}

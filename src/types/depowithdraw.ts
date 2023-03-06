@@ -1,36 +1,39 @@
 import {
-    Address,
+    Bytes,
     BigInt,
 } from '@graphprotocol/graph-ts';
 
 
 export class DepoWithdraw {
-    id: string
+    id: Bytes
     block: i32
     timestamp: i32
-    contractAddress: Address
+    hash: Bytes
+    contractAddress: Bytes
     type: string
-    userAddress: string
-    fromAddress: Address
-    toAddress: Address
+    userAddress: Bytes
+    fromAddress: Bytes
+    toAddress: Bytes
     coinAmount: BigInt
     usdAmount: BigInt
 
     constructor(
-        id: string,
+        id: Bytes,
         block: i32,
         timestamp: i32,
-        contractAddress: Address,
+        hash: Bytes,
+        contractAddress: Bytes,
         type: string,
-        userAddress: string,
-        fromAddress: Address,
-        toAddress: Address,
+        userAddress: Bytes,
+        fromAddress: Bytes,
+        toAddress: Bytes,
         coinAmount: BigInt,
         usdAmount: BigInt,
     ) {
         this.id = id
         this.block = block
         this.timestamp = timestamp
+        this.hash = hash
         this.contractAddress = contractAddress
         this.type = type
         this.userAddress = userAddress

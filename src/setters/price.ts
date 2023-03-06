@@ -1,4 +1,3 @@
-import { NUM } from '../utils/constants';
 import { Price } from '../../generated/schema';
 import { tokenToDecimal } from '../utils/tokens';
 import { VaultAdaptorMK2_v1_0 as dai_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
@@ -13,6 +12,10 @@ import { VaultAdaptorMK2_v1_6 as usdt_v1_6 } from '../../generated/avaxusdtvault
 import { VaultAdaptorMK2_v1_7 as dai_v1_7 } from '../../generated/avaxdaivault_v1_7/VaultAdaptorMK2_v1_7';
 import { VaultAdaptorMK2_v1_7 as usdc_v1_7 } from '../../generated/avaxusdcvault_v1_7/VaultAdaptorMK2_v1_7';
 import { VaultAdaptorMK2_v1_7 as usdt_v1_7 } from '../../generated/avaxusdtvault_v1_7/VaultAdaptorMK2_v1_7';
+import {
+    NUM,
+    ADDR,
+} from '../utils/constants';
 import {
     log,
     BigDecimal,
@@ -34,9 +37,9 @@ import {
 
 
 const initPrice = (): Price => {
-    let price = Price.load('0x');
+    let price = Price.load(ADDR.ZERO);
     if (!price) {
-        price = new Price('0x');
+        price = new Price(ADDR.ZERO);
         price.groDAI_e_v1_0 = NUM.ZERO;
         price.groUSDC_e_v1_0 = NUM.ZERO;
         price.groUSDT_e_v1_0 = NUM.ZERO;

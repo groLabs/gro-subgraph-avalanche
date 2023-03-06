@@ -1,6 +1,12 @@
 import {
+    Bytes,
     BigDecimal,
 } from '@graphprotocol/graph-ts';
+
+
+export class Addr {
+    public ZERO: Bytes;
+}
 
 export class Num {
     public ZERO: BigDecimal;
