@@ -2,7 +2,10 @@ import {
     Bytes,
     BigDecimal,
 } from '@graphprotocol/graph-ts';
-import { NUM } from '../utils/constants';
+import {
+    NUM,
+    TOKEN as Token,
+} from '../utils/constants';
 import { Totals } from '../../generated/schema';
 
 
@@ -106,84 +109,84 @@ export const setTotals = (
     let total = initTotals(userAddress);
 
     if (type === 'core_deposit' || type === 'transfer_in') {
-        if (coin === 'groDAI_e_vault_v1_0') {
+        if (coin === Token.GRO_DAI_E_VAULT_v1_0) {
             // coin amount
             total.amount_added_groDAI_e_v1_0 = total.amount_added_groDAI_e_v1_0.plus(coinAmount);
             total.net_amount_groDAI_e_v1_0 = total.net_amount_groDAI_e_v1_0.plus(coinAmount);
             // usd value
             total.value_added_groDAI_e_v1_0 = total.value_added_groDAI_e_v1_0.plus(usdAmount);
             total.net_value_groDAI_e_v1_0 = total.net_value_groDAI_e_v1_0.plus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_0') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_0) {
             // coin amount
             total.amount_added_groUSDC_e_v1_0 = total.amount_added_groUSDC_e_v1_0.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_0 = total.net_amount_groUSDC_e_v1_0.plus(coinAmount);
             // usd value
             total.value_added_groUSDC_e_v1_0 = total.value_added_groUSDC_e_v1_0.plus(usdAmount);
             total.net_value_groUSDC_e_v1_0 = total.net_value_groUSDC_e_v1_0.plus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_0') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_0) {
             // coin amount
             total.amount_added_groUSDT_e_v1_0 = total.amount_added_groUSDT_e_v1_0.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_0 = total.net_amount_groUSDT_e_v1_0.plus(coinAmount);
             // usd value
             total.value_added_groUSDT_e_v1_0 = total.value_added_groUSDT_e_v1_0.plus(usdAmount);
             total.net_value_groUSDT_e_v1_0 = total.net_value_groUSDT_e_v1_0.plus(usdAmount);
-        } else if (coin === 'groDAI_e_vault_v1_5') {
+        } else if (coin === Token.GRO_DAI_E_VAULT_V1_5) {
             // coin amount
             total.amount_added_groDAI_e_v1_5 = total.amount_added_groDAI_e_v1_5.plus(coinAmount);
             total.net_amount_groDAI_e_v1_5 = total.net_amount_groDAI_e_v1_5.plus(coinAmount);
             // usd value
             total.value_added_groDAI_e_v1_5 = total.value_added_groDAI_e_v1_5.plus(usdAmount);
             total.net_value_groDAI_e_v1_5 = total.net_value_groDAI_e_v1_5.plus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_5') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_5) {
             // coin amount
             total.amount_added_groUSDC_e_v1_5 = total.amount_added_groUSDC_e_v1_5.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_5 = total.net_amount_groUSDC_e_v1_5.plus(coinAmount);
             // usd value
             total.value_added_groUSDC_e_v1_5 = total.value_added_groUSDC_e_v1_5.plus(usdAmount);
             total.net_value_groUSDC_e_v1_5 = total.net_value_groUSDC_e_v1_5.plus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_5') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_5) {
             // coin amount
             total.amount_added_groUSDT_e_v1_5 = total.amount_added_groUSDT_e_v1_5.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_5 = total.net_amount_groUSDT_e_v1_5.plus(coinAmount);
             // usd value
             total.value_added_groUSDT_e_v1_5 = total.value_added_groUSDT_e_v1_5.plus(usdAmount);
             total.net_value_groUSDT_e_v1_5 = total.net_value_groUSDT_e_v1_5.plus(usdAmount);
-        } else if (coin === 'groDAI_e_vault_v1_6') {
+        } else if (coin === Token.GRO_DAI_E_VAULT_V1_6) {
             // coin amount
             total.amount_added_groDAI_e_v1_6 = total.amount_added_groDAI_e_v1_6.plus(coinAmount);
             total.net_amount_groDAI_e_v1_6 = total.net_amount_groDAI_e_v1_6.plus(coinAmount);
             // usd value
             total.value_added_groDAI_e_v1_6 = total.value_added_groDAI_e_v1_6.plus(usdAmount);
             total.net_value_groDAI_e_v1_6 = total.net_value_groDAI_e_v1_6.plus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_6') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_6) {
             // coin amount
             total.amount_added_groUSDC_e_v1_6 = total.amount_added_groUSDC_e_v1_6.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_6 = total.net_amount_groUSDC_e_v1_6.plus(coinAmount);
             // usd value
             total.value_added_groUSDC_e_v1_6 = total.value_added_groUSDC_e_v1_6.plus(usdAmount);
             total.net_value_groUSDC_e_v1_6 = total.net_value_groUSDC_e_v1_6.plus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_6') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_6) {
             // coin amount
             total.amount_added_groUSDT_e_v1_6 = total.amount_added_groUSDT_e_v1_6.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_6 = total.net_amount_groUSDT_e_v1_6.plus(coinAmount);
             // usd value
             total.value_added_groUSDT_e_v1_6 = total.value_added_groUSDT_e_v1_6.plus(usdAmount);
             total.net_value_groUSDT_e_v1_6 = total.net_value_groUSDT_e_v1_6.plus(usdAmount);
-        } else if (coin === 'groDAI_e_vault_v1_7') {
+        } else if (coin === Token.GRO_DAI_E_VAULT_V1_7) {
             // coin amount
             total.amount_added_groDAI_e_v1_7 = total.amount_added_groDAI_e_v1_7.plus(coinAmount);
             total.net_amount_groDAI_e_v1_7 = total.net_amount_groDAI_e_v1_7.plus(coinAmount);
             // usd value
             total.value_added_groDAI_e_v1_7 = total.value_added_groDAI_e_v1_7.plus(usdAmount);
             total.net_value_groDAI_e_v1_7 = total.net_value_groDAI_e_v1_7.plus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_7') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_7) {
             // coin amount
             total.amount_added_groUSDC_e_v1_7 = total.amount_added_groUSDC_e_v1_7.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_7 = total.net_amount_groUSDC_e_v1_7.plus(coinAmount);
             // usd value
             total.value_added_groUSDC_e_v1_7 = total.value_added_groUSDC_e_v1_7.plus(usdAmount);
             total.net_value_groUSDC_e_v1_7 = total.net_value_groUSDC_e_v1_7.plus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_7') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_7) {
             // coin amount
             total.amount_added_groUSDT_e_v1_7 = total.amount_added_groUSDT_e_v1_7.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_7 = total.net_amount_groUSDT_e_v1_7.plus(coinAmount);
@@ -196,84 +199,84 @@ export const setTotals = (
 
     } else if (type === 'core_withdrawal' || type === 'transfer_out') {
 
-        if (coin === 'groDAI_e_vault_v1_0') {
+        if (coin === Token.GRO_DAI_E_VAULT_v1_0) {
             // coin amount
             total.amount_removed_groDAI_e_v1_0 = total.amount_removed_groDAI_e_v1_0.plus(coinAmount);
             total.net_amount_groDAI_e_v1_0 = total.net_amount_groDAI_e_v1_0.minus(coinAmount);
             // usd value
             total.value_removed_groDAI_e_v1_0 = total.value_removed_groDAI_e_v1_0.plus(usdAmount);
             total.net_value_groDAI_e_v1_0 = total.net_value_groDAI_e_v1_0.minus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_0') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_0) {
             // coin amount
             total.amount_removed_groUSDC_e_v1_0 = total.amount_removed_groUSDC_e_v1_0.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_0 = total.net_amount_groUSDC_e_v1_0.minus(coinAmount);
             // usd value
             total.value_removed_groUSDC_e_v1_0 = total.value_removed_groUSDC_e_v1_0.plus(usdAmount);
             total.net_value_groUSDC_e_v1_0 = total.net_value_groUSDC_e_v1_0.minus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_0') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_0) {
             // coin amount
             total.amount_removed_groUSDT_e_v1_0 = total.amount_removed_groUSDT_e_v1_0.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_0 = total.net_amount_groUSDT_e_v1_0.minus(coinAmount);
             // usd value
             total.value_removed_groUSDT_e_v1_0 = total.value_removed_groUSDT_e_v1_0.plus(usdAmount);
             total.net_value_groUSDT_e_v1_0 = total.net_value_groUSDT_e_v1_0.minus(usdAmount);
-        } else if (coin === 'groDAI_e_vault_v1_5') {
+        } else if (coin === Token.GRO_DAI_E_VAULT_V1_5) {
             // coin amount
             total.amount_removed_groDAI_e_v1_5 = total.amount_removed_groDAI_e_v1_5.plus(coinAmount);
             total.net_amount_groDAI_e_v1_5 = total.net_amount_groDAI_e_v1_5.minus(coinAmount);
             // usd value
             total.value_removed_groDAI_e_v1_5 = total.value_removed_groDAI_e_v1_5.plus(usdAmount);
             total.net_value_groDAI_e_v1_5 = total.net_value_groDAI_e_v1_5.minus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_5') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_5) {
             // coin amount
             total.amount_removed_groUSDC_e_v1_5 = total.amount_removed_groUSDC_e_v1_5.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_5 = total.net_amount_groUSDC_e_v1_5.minus(coinAmount);
             // usd value
             total.value_removed_groUSDC_e_v1_5 = total.value_removed_groUSDC_e_v1_5.plus(usdAmount);
             total.net_value_groUSDC_e_v1_5 = total.net_value_groUSDC_e_v1_5.minus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_5') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_5) {
             // coin amount
             total.amount_removed_groUSDT_e_v1_5 = total.amount_removed_groUSDT_e_v1_5.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_5 = total.net_amount_groUSDT_e_v1_5.minus(coinAmount);
             // usd value
             total.value_removed_groUSDT_e_v1_5 = total.value_removed_groUSDT_e_v1_5.plus(usdAmount);
             total.net_value_groUSDT_e_v1_5 = total.net_value_groUSDT_e_v1_5.minus(usdAmount);
-        } else if (coin === 'groDAI_e_vault_v1_6') {
+        } else if (coin === Token.GRO_DAI_E_VAULT_V1_6) {
             // coin amount
             total.amount_removed_groDAI_e_v1_6 = total.amount_removed_groDAI_e_v1_6.plus(coinAmount);
             total.net_amount_groDAI_e_v1_6 = total.net_amount_groDAI_e_v1_6.minus(coinAmount);
             // usd value
             total.value_removed_groDAI_e_v1_6 = total.value_removed_groDAI_e_v1_6.plus(usdAmount);
             total.net_value_groDAI_e_v1_6 = total.net_value_groDAI_e_v1_6.minus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_6') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_6) {
             // coin amount
             total.amount_removed_groUSDC_e_v1_6 = total.amount_removed_groUSDC_e_v1_6.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_6 = total.net_amount_groUSDC_e_v1_6.minus(coinAmount);
             // usd value
             total.value_removed_groUSDC_e_v1_6 = total.value_removed_groUSDC_e_v1_6.plus(usdAmount);
             total.net_value_groUSDC_e_v1_6 = total.net_value_groUSDC_e_v1_6.minus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_6') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_6) {
             // coin amount
             total.amount_removed_groUSDT_e_v1_6 = total.amount_removed_groUSDT_e_v1_6.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_6 = total.net_amount_groUSDT_e_v1_6.minus(coinAmount);
             // usd value
             total.value_removed_groUSDT_e_v1_6 = total.value_removed_groUSDT_e_v1_6.plus(usdAmount);
             total.net_value_groUSDT_e_v1_6 = total.net_value_groUSDT_e_v1_6.minus(usdAmount);
-        } else if (coin === 'groDAI_e_vault_v1_7') {
+        } else if (coin === Token.GRO_DAI_E_VAULT_V1_7) {
             // coin amount
             total.amount_removed_groDAI_e_v1_7 = total.amount_removed_groDAI_e_v1_7.plus(coinAmount);
             total.net_amount_groDAI_e_v1_7 = total.net_amount_groDAI_e_v1_7.minus(coinAmount);
             // usd value
             total.value_removed_groDAI_e_v1_7 = total.value_removed_groDAI_e_v1_7.plus(usdAmount);
             total.net_value_groDAI_e_v1_7 = total.net_value_groDAI_e_v1_7.minus(usdAmount);
-        } else if (coin === 'groUSDC_e_vault_v1_7') {
+        } else if (coin === Token.GRO_USDC_E_VAULT_V1_7) {
             // coin amount
             total.amount_removed_groUSDC_e_v1_7 = total.amount_removed_groUSDC_e_v1_7.plus(coinAmount);
             total.net_amount_groUSDC_e_v1_7 = total.net_amount_groUSDC_e_v1_7.minus(coinAmount);
             // usd value
             total.value_removed_groUSDC_e_v1_7 = total.value_removed_groUSDC_e_v1_7.plus(usdAmount);
             total.net_value_groUSDC_e_v1_7 = total.net_value_groUSDC_e_v1_7.minus(usdAmount);
-        } else if (coin === 'groUSDT_e_vault_v1_7') {
+        } else if (coin === Token.GRO_USDT_E_VAULT_V1_7) {
             // coin amount
             total.amount_removed_groUSDT_e_v1_7 = total.amount_removed_groUSDT_e_v1_7.plus(coinAmount);
             total.net_amount_groUSDT_e_v1_7 = total.net_amount_groUSDT_e_v1_7.minus(coinAmount);

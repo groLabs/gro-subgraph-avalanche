@@ -1,4 +1,7 @@
-import { NUM } from '../utils/constants';
+import {
+    NUM,
+    TOKEN as Token,
+} from '../utils/constants';
 import { VaultAdaptorMK2_v1_0 as dai_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdc_v1_0 } from '../../generated/avaxusdcvault_v1_0/VaultAdaptorMK2_v1_0';
 import { VaultAdaptorMK2_v1_0 as usdt_v1_0 } from '../../generated/avaxusdtvault_v1_0/VaultAdaptorMK2_v1_0';
@@ -32,6 +35,7 @@ import {
 } from '../utils/contracts';
 const ZERO_RESULT = [NUM.ZERO, NUM.ZERO, NUM.ZERO];
 
+
 // Converts a BigInt into a (N-decimal) BigDecimal
 export function tokenToDecimal(
     amount: BigInt,
@@ -53,40 +57,40 @@ export function tokenToDecimal(
 
 // Retrieves price per share for a given token
 export const getPricePerShare = (token: string): BigDecimal[] => {
-    if (token === 'groDAI_e_vault_v1_0') {
+    if (token === Token.GRO_DAI_E_VAULT_v1_0) {
         const contract = dai_v1_0.bind(vaultDai_1_0_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDC_e_vault_v1_0') {
+    } else if (token === Token.GRO_USDC_E_VAULT_V1_0) {
         const contract = usdc_v1_0.bind(vaultUsdc_1_0_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDT_e_vault_v1_0') {
+    } else if (token === Token.GRO_USDT_E_VAULT_V1_0) {
         const contract = usdt_v1_0.bind(vaultUsdt_1_0_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groDAI_e_vault_v1_5') {
+    } else if (token === Token.GRO_DAI_E_VAULT_V1_5) {
         const contract = dai_v1_5.bind(vaultDai_1_5_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDC_e_vault_v1_5') {
+    } else if (token === Token.GRO_USDC_E_VAULT_V1_5) {
         const contract = usdc_v1_5.bind(vaultUsdc_1_5_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDT_e_vault_v1_5') {
+    } else if (token === Token.GRO_USDT_E_VAULT_V1_5) {
         const contract = usdt_v1_5.bind(vaultUsdt_1_5_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groDAI_e_vault_v1_6') {
+    } else if (token === Token.GRO_DAI_E_VAULT_V1_6) {
         const contract = dai_v1_6.bind(vaultDai_1_6_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDC_e_vault_v1_6') {
+    } else if (token === Token.GRO_USDC_E_VAULT_V1_6) {
         const contract = usdc_v1_6.bind(vaultUsdc_1_6_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDT_e_vault_v1_6') {
+    } else if (token === Token.GRO_USDT_E_VAULT_V1_6) {
         const contract = usdt_v1_6.bind(vaultUsdt_1_6_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groDAI_e_vault_v1_7') {
+    } else if (token === Token.GRO_DAI_E_VAULT_V1_7) {
         const contract = dai_v1_7.bind(vaultDai_1_7_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDC_e_vault_v1_7') {
+    } else if (token === Token.GRO_USDC_E_VAULT_V1_7) {
         const contract = usdc_v1_7.bind(vaultUsdc_1_7_Address);
         return callPricePerShare(contract, token);
-    } else if (token === 'groUSDT_e_vault_v1_7') {
+    } else if (token === Token.GRO_USDT_E_VAULT_V1_7) {
         const contract = usdt_v1_7.bind(vaultUsdt_1_7_Address);
         return callPricePerShare(contract, token);
     } else {

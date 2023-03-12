@@ -1,4 +1,7 @@
-import { DECIMALS } from '../utils/constants';
+import {
+    DECIMALS,
+    TOKEN as Token,
+} from '../utils/constants';
 import { tokenToDecimal } from '../utils/tokens';
 import { setDepositLimit } from '../setters/strats';
 import {
@@ -53,42 +56,42 @@ import {
 
 // Transfers v1_5
 export function handleTransferDAI(ev: TransferEventDai): void {
-    handleTransfer(ev, 'groDAI_e_vault_v1_5');
+    handleTransfer(ev, Token.GRO_DAI_E_VAULT_V1_5);
 }
 export function handleTransferUSDC(ev: TransferEventUsdc): void {
-    handleTransfer(ev, 'groUSDC_e_vault_v1_5');
+    handleTransfer(ev, Token.GRO_USDC_E_VAULT_V1_5);
 }
 export function handleTransferUSDT(ev: TransferEventUsdt): void {
-    handleTransfer(ev, 'groUSDT_e_vault_v1_5');
+    handleTransfer(ev, Token.GRO_USDT_E_VAULT_V1_5);
 }
 
 // Approvals v1_5
 export function handleApprovalDAI(ev: ApprovalEventDai): void {
-    handleApproval(ev, 'groDAI_e_vault_v1_5');
+    handleApproval(ev, Token.GRO_DAI_E_VAULT_V1_5);
 }
 export function handleApprovalUSDC(ev: ApprovalEventUsdc): void {
-    handleApproval(ev, 'groUSDC_e_vault_v1_5');
+    handleApproval(ev, Token.GRO_USDC_E_VAULT_V1_5);
 }
 export function handleApprovalUSDT(ev: ApprovalEventUsdt): void {
-    handleApproval(ev, 'groUSDT_e_vault_v1_5');
+    handleApproval(ev, Token.GRO_USDT_E_VAULT_V1_5);
 }
 
 // Deposits v1_5
 export function handleDepositDAI(ev: LogDepositEventDai): void {
-    handleDeposit(ev, 'groDAI_e_vault_v1_5');
+    handleDeposit(ev, Token.GRO_DAI_E_VAULT_V1_5);
 }
 export function handleDepositUSDC(ev: LogDepositEventUsdc): void {
-    handleDeposit(ev, 'groUSDC_e_vault_v1_5');
+    handleDeposit(ev, Token.GRO_USDC_E_VAULT_V1_5);
 }
 export function handleDepositUSDT(ev: LogDepositEventUsdt): void {
-    handleDeposit(ev, 'groUSDT_e_vault_v1_5');
+    handleDeposit(ev, Token.GRO_USDT_E_VAULT_V1_5);
 }
 
 // Withdrawals v1_5
 export function handleWithdrawalDAI(ev: LogWithdrawalDai): void {
     handleWithdrawal(
         ev,
-        'groDAI_e_vault_v1_5',
+        Token.GRO_DAI_E_VAULT_V1_5,
         stratDai_1_5_Address,
         vaultDai_1_5_Address,
     );
@@ -96,7 +99,7 @@ export function handleWithdrawalDAI(ev: LogWithdrawalDai): void {
 export function handleWithdrawalUSDC(ev: LogWithdrawalUsdc): void {
     handleWithdrawal(
         ev,
-        'groUSDC_e_vault_v1_5',
+        Token.GRO_USDC_E_VAULT_V1_5,
         stratUsdc_1_5_Address,
         vaultUsdc_1_5_Address,
     );
@@ -104,7 +107,7 @@ export function handleWithdrawalUSDC(ev: LogWithdrawalUsdc): void {
 export function handleWithdrawalUSDT(ev: LogWithdrawalUsdt): void {
     handleWithdrawal(
         ev,
-        'groUSDT_e_vault_v1_5',
+        Token.GRO_USDT_E_VAULT_V1_5,
         stratUsdt_1_5_Address,
         vaultUsdt_1_5_Address,
     );
@@ -113,21 +116,21 @@ export function handleWithdrawalUSDT(ev: LogWithdrawalUsdt): void {
 // Strategy Harvests v1_5
 export function handleStrategyReportedDAI(event: LogStrategyReportedDai): void {
     handleStrategyReported(
-        'groDAI_e_vault_v1_5',
+        Token.GRO_DAI_E_VAULT_V1_5,
         stratDai_1_5_Address,
         vaultDai_1_5_Address,
     );
 }
 export function handleStrategyReportedUSDC(event: LogStrategyReportedUsdc): void {
     handleStrategyReported(
-        'groUSDC_e_vault_v1_5',
+        Token.GRO_USDC_E_VAULT_V1_5,
         stratUsdc_1_5_Address,
         vaultUsdc_1_5_Address,
     );
 }
 export function handleStrategyReportedUSDT(event: LogStrategyReportedUsdt): void {
     handleStrategyReported(
-        'groUSDT_e_vault_v1_5',
+        Token.GRO_USDT_E_VAULT_V1_5,
         stratUsdt_1_5_Address,
         vaultUsdt_1_5_Address,
     );
@@ -136,21 +139,21 @@ export function handleStrategyReportedUSDT(event: LogStrategyReportedUsdt): void
 // New Strategy Harvests v1_5
 export function handleNewStrategyHarvestDAI(event: LogNewStrategyHarvestDai): void {
     handleStrategyReported(
-        'groDAI_e_vault_v1_5',
+        Token.GRO_DAI_E_VAULT_V1_5,
         stratDai_1_5_Address,
         vaultDai_1_5_Address,
     );
 }
 export function handleNewStrategyHarvestUSDC(event: LogNewStrategyHarvestUsdc): void {
     handleStrategyReported(
-        'groUSDC_e_vault_v1_5',
+        Token.GRO_USDC_E_VAULT_V1_5,
         stratUsdc_1_5_Address,
         vaultUsdc_1_5_Address,
     );
 }
 export function handleNewStrategyHarvestUSDT(event: LogNewStrategyHarvestUsdt): void {
     handleStrategyReported(
-        'groUSDT_e_vault_v1_5',
+        Token.GRO_USDT_E_VAULT_V1_5,
         stratUsdt_1_5_Address,
         vaultUsdt_1_5_Address,
     );
