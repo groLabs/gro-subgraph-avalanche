@@ -1,7 +1,8 @@
 import { setUser } from '../setters/users'
-import { setDepoWithdrawTx } from '../setters/depowithdraw';
-import { DepoWithdraw } from '../types/depowithdraw';
 import { setTotals } from '../setters/totals';
+import { DepoWithdraw } from '../types/depowithdraw';
+import { TX_TYPE as TxType } from '../utils/constants';
+import { setDepoWithdrawTx } from '../setters/depowithdraw';
 
 
 // Withdrawal from Labs
@@ -10,15 +11,15 @@ export const manageWithdrawal = (
     token: string,
 ): void => {
 
-    // Step 1: Manage User
+    // Creates user if not existing yet in entity <User>
     setUser(ev.userAddress);
 
-    //Step 2: Manage Transaction
+    // Stores withdrawal tx in entity <TransferTx>
     const tx = setDepoWithdrawTx(ev, token);
 
-    //Step 3: Manage Totals
+    // Updates user totals in entity <Totals>
     setTotals(
-        'core_withdrawal',
+        TxType.CORE_WITHDRAWAL,
         token,
         tx.user_address,
         tx.coin_amount,

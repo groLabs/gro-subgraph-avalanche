@@ -1,12 +1,13 @@
+import { Totals } from '../../generated/schema';
+import {
+    NUM,
+    TOKEN as Token,
+    TX_TYPE as TxType,
+} from '../utils/constants';
 import {
     Bytes,
     BigDecimal,
 } from '@graphprotocol/graph-ts';
-import {
-    NUM,
-    TOKEN as Token,
-} from '../utils/constants';
-import { Totals } from '../../generated/schema';
 
 
 const initTotals = (userAddress: Bytes): Totals => {
@@ -14,6 +15,7 @@ const initTotals = (userAddress: Bytes): Totals => {
     if (!total) {
         total = new Totals(userAddress);
         total.user_address = userAddress;
+        // amount added
         total.amount_added_groDAI_e_v1_0 = NUM.ZERO;
         total.amount_added_groUSDC_e_v1_0 = NUM.ZERO;
         total.amount_added_groUSDT_e_v1_0 = NUM.ZERO;
@@ -26,7 +28,7 @@ const initTotals = (userAddress: Bytes): Totals => {
         total.amount_added_groDAI_e_v1_7 = NUM.ZERO;
         total.amount_added_groUSDC_e_v1_7 = NUM.ZERO;
         total.amount_added_groUSDT_e_v1_7 = NUM.ZERO;
-
+        // amount removed
         total.amount_removed_groDAI_e_v1_0 = NUM.ZERO;
         total.amount_removed_groUSDC_e_v1_0 = NUM.ZERO;
         total.amount_removed_groUSDT_e_v1_0 = NUM.ZERO;
@@ -39,7 +41,7 @@ const initTotals = (userAddress: Bytes): Totals => {
         total.amount_removed_groDAI_e_v1_7 = NUM.ZERO;
         total.amount_removed_groUSDC_e_v1_7 = NUM.ZERO;
         total.amount_removed_groUSDT_e_v1_7 = NUM.ZERO;
-
+        // value added
         total.value_added_groDAI_e_v1_0 = NUM.ZERO;
         total.value_added_groUSDC_e_v1_0 = NUM.ZERO;
         total.value_added_groUSDT_e_v1_0 = NUM.ZERO;
@@ -53,7 +55,7 @@ const initTotals = (userAddress: Bytes): Totals => {
         total.value_added_groUSDC_e_v1_7 = NUM.ZERO;
         total.value_added_groUSDT_e_v1_7 = NUM.ZERO;
         total.value_added_total = NUM.ZERO;
-
+        // value removed
         total.value_removed_groDAI_e_v1_0 = NUM.ZERO;
         total.value_removed_groUSDC_e_v1_0 = NUM.ZERO;
         total.value_removed_groUSDT_e_v1_0 = NUM.ZERO;
@@ -67,7 +69,7 @@ const initTotals = (userAddress: Bytes): Totals => {
         total.value_removed_groUSDC_e_v1_7 = NUM.ZERO;
         total.value_removed_groUSDT_e_v1_7 = NUM.ZERO;
         total.value_removed_total = NUM.ZERO;
-
+        // net value
         total.net_value_groDAI_e_v1_0 = NUM.ZERO;
         total.net_value_groUSDC_e_v1_0 = NUM.ZERO;
         total.net_value_groUSDT_e_v1_0 = NUM.ZERO;
@@ -81,7 +83,7 @@ const initTotals = (userAddress: Bytes): Totals => {
         total.net_value_groUSDC_e_v1_7 = NUM.ZERO;
         total.net_value_groUSDT_e_v1_7 = NUM.ZERO;
         total.net_value_total = NUM.ZERO;
-
+        // net amount
         total.net_amount_groDAI_e_v1_0 = NUM.ZERO;
         total.net_amount_groUSDC_e_v1_0 = NUM.ZERO;
         total.net_amount_groUSDT_e_v1_0 = NUM.ZERO;
@@ -105,10 +107,11 @@ export const setTotals = (
     coinAmount: BigDecimal,
     usdAmount: BigDecimal,
 ): void => {
-
     let total = initTotals(userAddress);
-
-    if (type === 'core_deposit' || type === 'transfer_in') {
+    if (
+        type === TxType.CORE_DEPOSIT
+        || type === TxType.TRANSFER_IN
+    ) {
         if (coin === Token.GRO_DAI_E_VAULT_v1_0) {
             // coin amount
             total.amount_added_groDAI_e_v1_0 = total.amount_added_groDAI_e_v1_0.plus(coinAmount);
@@ -196,9 +199,10 @@ export const setTotals = (
         }
         total.value_added_total = total.value_added_total.plus(usdAmount);
         total.net_value_total = total.net_value_total.plus(usdAmount);
-
-    } else if (type === 'core_withdrawal' || type === 'transfer_out') {
-
+    } else if (
+        type === TxType.CORE_WITHDRAWAL
+        || type === TxType.TRANSFER_OUT
+    ) {
         if (coin === Token.GRO_DAI_E_VAULT_v1_0) {
             // coin amount
             total.amount_removed_groDAI_e_v1_0 = total.amount_removed_groDAI_e_v1_0.plus(coinAmount);
@@ -287,6 +291,5 @@ export const setTotals = (
         total.value_removed_total = total.value_removed_total.plus(usdAmount);
         total.net_value_total = total.net_value_total.minus(usdAmount);
     }
-
     total.save();
 }

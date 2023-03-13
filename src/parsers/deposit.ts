@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { ADDR } from '../utils/constants';
 import { DepoWithdraw } from '../types/depowithdraw';
+import { TX_TYPE as TxType } from '../utils/constants';
 
 
 export function parseDepositEvent<T>(ev: T): DepoWithdraw {
@@ -11,12 +12,12 @@ export function parseDepositEvent<T>(ev: T): DepoWithdraw {
         ev.block.timestamp.toI32(),
         ev.transaction.hash,
         ev.address,
-        'core_deposit',
-        ev.params.from,                 // links with User.id,
-        ADDR.ZERO,                      // from
-        ev.params.from,                 // to
-        ev.params.shares,               // coinAmount
-        ev.params._amount,              // usdAmount
+        TxType.CORE_DEPOSIT,
+        ev.params.from,     // FK to User.id,
+        ADDR.ZERO,          // from
+        ev.params.from,     // to
+        ev.params.shares,   // coinAmount
+        ev.params._amount,  // usdAmount
     )
     return event;
 }

@@ -1,6 +1,6 @@
 import { setUser } from '../setters/users'
-import { setApprovalTx } from '../setters/approvals';
 import { ApprovalEvent } from '../types/approval';
+import { setApprovalTx } from '../setters/approvals';
 
 
 export const manageApproval = (
@@ -8,9 +8,9 @@ export const manageApproval = (
     token: string
 ): void => {
 
-    // Step 1: Manage User
+    // Creates user if not existing yet in entity <User>
     setUser(ev.ownerAddress);
 
-    //Step 2: Manage Transaction
+    // Stores approval tx in entity <ApprovalTx>
     setApprovalTx(ev, token);
 }

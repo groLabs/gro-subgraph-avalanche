@@ -1,7 +1,10 @@
-import { DECIMALS } from '../utils/constants';
 import { Bytes } from '@graphprotocol/graph-ts';
 import { TransferEvent } from '../types/transfer';
 import { TransferTx } from '../../generated/schema';
+import {
+    DECIMALS,
+    TX_TYPE as TxType,
+} from '../utils/constants';
 import {
     tokenToDecimal,
     getPricePerShare,
@@ -14,12 +17,12 @@ export const setTransferTx = (
     type: string,
     token: string,
 ): TransferTx => {
-    const transfer_tag = (type == 'transfer_in')
+    const transfer_tag = (type == TxType.TRANSFER_IN)
         ? 0
-        : (type == 'transfer_out')
+        : (type == TxType.TRANSFER_OUT)
             ? 1
             : 2;
-    const id = ev.id.concatI32(transfer_tag);  
+    const id = ev.id.concatI32(transfer_tag);
     let tx = new TransferTx(id);
     const base = token.includes('DAI')
         ? 18
