@@ -112,7 +112,7 @@ export const setTotals = (
         type === TxType.CORE_DEPOSIT
         || type === TxType.TRANSFER_IN
     ) {
-        if (coin === Token.GRO_DAI_E_VAULT_v1_0) {
+        if (coin === Token.GRO_DAI_E_VAULT_V1_0) {
             // coin amount
             total.amount_added_groDAI_e_v1_0 = total.amount_added_groDAI_e_v1_0.plus(coinAmount);
             total.net_amount_groDAI_e_v1_0 = total.net_amount_groDAI_e_v1_0.plus(coinAmount);
@@ -203,7 +203,7 @@ export const setTotals = (
         type === TxType.CORE_WITHDRAWAL
         || type === TxType.TRANSFER_OUT
     ) {
-        if (coin === Token.GRO_DAI_E_VAULT_v1_0) {
+        if (coin === Token.GRO_DAI_E_VAULT_V1_0) {
             // coin amount
             total.amount_removed_groDAI_e_v1_0 = total.amount_removed_groDAI_e_v1_0.plus(coinAmount);
             total.net_amount_groDAI_e_v1_0 = total.net_amount_groDAI_e_v1_0.minus(coinAmount);

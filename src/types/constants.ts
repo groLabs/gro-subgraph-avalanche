@@ -22,7 +22,7 @@ export class Token {
     public DAI_E: string;
     public USDC_E: string;
     public USDT_E: string;
-    public GRO_DAI_E_VAULT_v1_0: string;
+    public GRO_DAI_E_VAULT_V1_0: string;
     public GRO_USDC_E_VAULT_V1_0: string;
     public GRO_USDT_E_VAULT_V1_0: string;
     public GRO_DAI_E_VAULT_V1_5: string;

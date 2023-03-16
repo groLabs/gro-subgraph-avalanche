@@ -1,3 +1,23 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice Manages G-token transfer events by:
+///     - Storing the user (if not existing yet)
+///     - Storing the transfer transaction
+///     - Updating the user's balance
+/// @dev A non-deposit/withdrawal transfer implies generating two transactions:
+///     - For the wallet sending a G-token is a 'transfer-out'
+///     - For the wallet receiving a G-token is a 'transfer-in'
+
 import { ADDR } from '../utils/constants';
 import { setUser } from '../setters/users';
 import { setTotals } from '../setters/totals';
@@ -7,6 +27,11 @@ import { setTransferTx } from '../setters/transfers';
 import { TX_TYPE as TxType } from '../utils/constants';
 
 
+/// @notice Builds the transfer tx
+/// @param ev the parsed transfer event
+/// @param userAddress the user address
+/// @param type the transfer type (deposit, withdrawal, transfer_in & transfer_out)
+/// @param token the transfer G-token
 function buildTransfer(
     ev: TransferEvent,
     userAddress: Bytes,
@@ -34,6 +59,9 @@ function buildTransfer(
     );
 }
 
+/// @notice Manages transfers
+/// @param ev the parsed transfer event
+/// @param token the transfer G-token
 export const manageTransfer = (
     ev: TransferEvent,
     token: string

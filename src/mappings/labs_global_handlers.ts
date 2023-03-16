@@ -1,3 +1,18 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice Global handler for approvals, deposits, withdrawals, transfers & harvests
+/// @dev Using T functions to handle different vault versions with same data structure
+
 // @ts-nocheck
 import { setStrategy } from '../setters/strats';
 import { Address } from '@graphprotocol/graph-ts';
@@ -45,7 +60,8 @@ export function handleDeposit<T>(evDep: T, token: string): void {
 
 // Global Transfer handler
 export function handleTransfer<T>(evTr: T, token: string): void {
-    if (!isDepositOrWithdrawal(evTr.params.from, evTr.params.to, evTr.address)) {
+    if (!isDepositOrWithdrawal(
+        evTr.params.from, evTr.params.to, evTr.address)) {
         const ev = parseTransferEvent(evTr);
         manageTransfer(ev, token);
     }

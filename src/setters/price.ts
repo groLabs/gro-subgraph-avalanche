@@ -59,7 +59,7 @@ const initPrice = (): Price => {
 
 export const setLatestPrice = (token: string): void => {
     let price = initPrice();
-    if (token === Token.GRO_DAI_E_VAULT_v1_0) {
+    if (token === Token.GRO_DAI_E_VAULT_V1_0) {
         const contract = dai_v1_0.bind(vaultDai_1_0_Address);
         price.groDAI_e_v1_0 = callPricePerShare(contract, token);
     } else if (token === Token.GRO_USDC_E_VAULT_V1_0) {

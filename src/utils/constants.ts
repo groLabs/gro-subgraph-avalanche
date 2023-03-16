@@ -33,7 +33,7 @@ export const TOKEN: Token = {
     DAI_E: 'dai_e',
     USDC_E: 'usdc_e',
     USDT_E: 'usdt_e',
-    GRO_DAI_E_VAULT_v1_0: 'groDAI_e_vault_v1_0',
+    GRO_DAI_E_VAULT_V1_0: 'groDAI_e_vault_v1_0',
     GRO_USDC_E_VAULT_V1_0: 'groUSDC_e_vault_v1_0',
     GRO_USDT_E_VAULT_V1_0: 'groUSDT_e_vault_v1_0',
     GRO_DAI_E_VAULT_V1_5: 'groDAI_e_vault_v1_5',

@@ -57,7 +57,7 @@ export function tokenToDecimal(
 
 // Retrieves price per share for a given token
 export const getPricePerShare = (token: string): BigDecimal[] => {
-    if (token === Token.GRO_DAI_E_VAULT_v1_0) {
+    if (token === Token.GRO_DAI_E_VAULT_V1_0) {
         const contract = dai_v1_0.bind(vaultDai_1_0_Address);
         return callPricePerShare(contract, token);
     } else if (token === Token.GRO_USDC_E_VAULT_V1_0) {
