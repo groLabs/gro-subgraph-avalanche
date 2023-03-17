@@ -16,12 +16,13 @@
 ///     - Vault USDC v1.6: 0x2eb05cffa24309b9aaf300392a4d8db745d4e592
 ///     - Vault USDT v1.6: 0x6ef44077a1f5e10cdfccc30efb7dcdb1d5475581
 
+import { tokenToDecimal } from '../utils/tokens';
+import { setDepositLimit } from '../setters/strats';
+import { initMasterDataOnce } from '../setters/masterdata';
 import {
     DECIMALS,
     TOKEN as Token,
 } from '../utils/constants';
-import { tokenToDecimal } from '../utils/tokens';
-import { setDepositLimit } from '../setters/strats';
 import {
     Approval as ApprovalDai,
     Transfer as TransferDai,
@@ -39,6 +40,7 @@ import {
     LogWithdrawal as LogWithdrawalDai,
     LogDepositLimit as LogDepositLimitDai,
     LogStrategyReported as LogStrategyReportedDai,
+    OwnershipTransferred as OwnershipTransferredDai,
     LogNewStrategyHarvest as LogNewStrategyHarvestDai,
 } from '../../generated/avaxdaivault_v1_7/VaultAdaptorMK2_v1_7';
 import {
@@ -202,4 +204,11 @@ export function handleDepositLimitUSDT(event: LogDepositLimitUsdt): void {
         stratUsdt_1_7_Address,
         tokenToDecimal(event.params.newLimit, 6, DECIMALS),
     );
+}
+
+/// @notice Handles <OwnershipTransferredDai> events from Vaults v1.7
+/// @dev No parameter is needed: this function is used to initialise Masterdata once
+///      for test environment
+export function handleOwnershipTransferredUSDT(_: OwnershipTransferredDai): void {
+    initMasterDataOnce();
 }

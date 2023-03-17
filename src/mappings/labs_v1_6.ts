@@ -16,12 +16,12 @@
 ///     - Vault USDC v1.6: 0x72681d8dfce95b275fd5d2bfba199f78c9b0d7ba
 ///     - Vault USDT v1.6: 0xad6c0751e4fcdca0926174248f67184880a1dbbd
 
+import { tokenToDecimal } from '../utils/tokens';
+import { setDepositLimit } from '../setters/strats';
 import {
     DECIMALS,
     TOKEN as Token,
 } from '../utils/constants';
-import { tokenToDecimal } from '../utils/tokens';
-import { setDepositLimit } from '../setters/strats';
 import {
     Approval as ApprovalDai,
     Transfer as TransferDai,

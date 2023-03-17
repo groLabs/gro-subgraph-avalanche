@@ -85,6 +85,9 @@ dataSources:
           handler: handleNewStrategyHarvestUSDC
         - event: LogDepositLimit(uint256)
           handler: handleDepositLimitUSDC
+          # To initialise MasterData for prod environment (aka. Gro Avalanche genesis block)
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferredUSDC
       file: ./src/mappings/labs_v1_0.ts
   - kind: ethereum/contract
     name: avaxusdtvault_v1_0
@@ -488,4 +491,7 @@ dataSources:
           handler: handleNewStrategyHarvestUSDT
         - event: LogDepositLimit(uint256)
           handler: handleDepositLimitUSDT
+          # To initialise MasterData for test environment
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferredUSDT
       file: ./src/mappings/labs_v1_7.ts
