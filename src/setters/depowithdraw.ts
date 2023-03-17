@@ -1,3 +1,17 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice Stores deposits & withdrawals into entity <TransferTx>
+
 import { DECIMALS } from '../utils/constants';
 import { TransferTx } from '../../generated/schema';
 import { DepoWithdraw } from '../types/depowithdraw';
@@ -7,6 +21,11 @@ import {
 } from '../utils/tokens';
 
 
+/// @notice Stores core deposits & withdrawals into entity <TransferTx>
+/// @dev Triggered by <LogDeposit> & <LogWithdrawal> from Vaults
+/// @param ev the parsed event
+/// @param token the token
+/// @return deposit or withdrawal object created
 export const setDepoWithdrawTx = (
     ev: DepoWithdraw,
     token: string,

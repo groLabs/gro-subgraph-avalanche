@@ -1,3 +1,17 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice Stores gro token transfers in entity <TransferTx>
+
 import { Bytes } from '@graphprotocol/graph-ts';
 import { TransferEvent } from '../types/transfer';
 import { TransferTx } from '../../generated/schema';
@@ -11,6 +25,12 @@ import {
 } from '../utils/tokens';
 
 
+/// @notice Stores transfers in entity <TransferTx>
+/// @param ev the parsed transfer event
+/// @param userAddress the user address
+/// @param type the transfer type (core_deposit, core_withdrawal, transfer_in, transfer_out)
+/// @param token the transfer token
+/// @return transfer object created
 export const setTransferTx = (
     ev: TransferEvent,
     userAddress: Bytes,

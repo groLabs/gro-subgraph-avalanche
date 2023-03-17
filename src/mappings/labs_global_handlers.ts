@@ -14,18 +14,18 @@
 /// @dev Using T functions to handle different vault versions with same data structure
 
 // @ts-nocheck
-import { setStrategy } from '../setters/strats';
 import { Address } from '@graphprotocol/graph-ts';
 import { setLatestPrice } from '../setters/price';
 import { manageDeposit } from '../managers/deposits';
 import { manageTransfer } from '../managers/transfers';
 import { manageApproval } from '../managers/approvals';
-import { manageWithdrawal } from '../managers/withdrawals';
+import { updateTotalAssets } from '../setters/strats';
 import { parseDepositEvent } from '../parsers/deposit';
 import { parseTransferEvent } from '../parsers/transfer';
 import { parseApprovalEvent } from '../parsers/approval';
-import { parseWithdrawalEvent } from '../parsers/withdrawal';
+import { manageWithdrawal } from '../managers/withdrawals';
 import { isDepositOrWithdrawal } from '../utils/contracts';
+import { parseWithdrawalEvent } from '../parsers/withdrawal';
 
 
 // Global Strategy Reported handler
@@ -38,7 +38,7 @@ export function handleStrategyReported(
         ? 18
         : 6;
     setLatestPrice(token);
-    setStrategy(
+    updateTotalAssets(
         stratAddr,
         vaultAddr,
         base,
@@ -80,7 +80,7 @@ export function handleWithdrawal<T>(
     const base = token.includes('DAI')
         ? 18
         : 6;
-    setStrategy(
+    updateTotalAssets(
         stratAddr,
         vaultAddr,
         base,

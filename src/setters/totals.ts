@@ -1,3 +1,19 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice
+///     - Initialises entity <Totals> and updates their amount and value fields
+///     - This entity is used to provide aggregated personal stats to the front-end
+
 import { Totals } from '../../generated/schema';
 import {
     NUM,
@@ -10,6 +26,9 @@ import {
 } from '@graphprotocol/graph-ts';
 
 
+/// @notice Initialises entity <Totals> with default 0 values
+/// @param userAddress the user address
+/// @dev total object created or loaded
 const initTotals = (userAddress: Bytes): Totals => {
     let total = Totals.load(userAddress);
     if (!total) {
@@ -100,6 +119,15 @@ const initTotals = (userAddress: Bytes): Totals => {
     return total;
 }
 
+/// @notice Updates the gro token amounts and values in entity <Totals>
+/// @dev Triggered by <LogDeposit>, <LogWithdrawal> & <Transfer> events
+///      from Vault contracts
+/// @param type the transaction type (core_deposit, core_withdrawal,
+///             transfer_in & transfer_out)
+/// @param coin the coin type
+/// @param userAddress the user address
+/// @param coinAmount the coin amount
+/// @param usdAmount the coin value (in USD)
 export const setTotals = (
     type: string,
     coin: string,

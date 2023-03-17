@@ -22,7 +22,7 @@ import {
 
 
 /// @notice Initialises entity <MasterData> with default values if not created yet
-/// @return MasterData object
+/// @return masterdata object created or loaded
 export const initMD = (): MasterData => {
     let md = MasterData.load(ADDR.ZERO);
     if (!md) {

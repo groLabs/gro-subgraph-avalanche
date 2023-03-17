@@ -1,3 +1,17 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice Updates the Gro-related token prices
+
 import { Price } from '../../generated/schema';
 import { tokenToDecimal } from '../utils/tokens';
 import { VaultAdaptorMK2_v1_0 as dai_v1_0 } from '../../generated/avaxdaivault_v1_0/VaultAdaptorMK2_v1_0';
@@ -37,6 +51,8 @@ import {
 } from '../utils/contracts';
 
 
+/// @notice Initialises entity <Price> with default zero values if not created yet
+/// @return price object created or loaded
 const initPrice = (): Price => {
     let price = Price.load(ADDR.ZERO);
     if (!price) {
@@ -57,6 +73,8 @@ const initPrice = (): Price => {
     return price;
 }
 
+/// @notice Updates the latest price per share given a token
+/// @param token the token for which the price will be updated
 export const setLatestPrice = (token: string): void => {
     let price = initPrice();
     if (token === Token.GRO_DAI_E_VAULT_V1_0) {
@@ -96,11 +114,17 @@ export const setLatestPrice = (token: string): void => {
         const contract = usdt_v1_7.bind(vaultUsdt_1_7_Address);
         price.groUSDT_e_v1_7 = callPricePerShare(contract, token);
     } else {
-        log.error('src/setters/price.ts->setLatestPrice(): no gro token found', []);
+        log.error(
+            'src/setters/price.ts->setLatestPrice(): token {} not found',
+            [token]
+        );
     }
     price.save();
 }
 
+/// @notice Retrieves the price per share given a token and its vault
+/// @param contract the vault contract to retrieve the price per share from
+/// @param token the token to retrieve the price for
 function callPricePerShare<T>(contract: T, token: string): BigDecimal {
     if (contract) {
         //@ts-ignore
