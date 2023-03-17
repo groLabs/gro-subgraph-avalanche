@@ -1,8 +1,27 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice Contains contract-related util functions and address conversions
+
 import { contracts } from '../../addresses';
 import { ADDR } from '../utils/constants';
 import { Address } from '@graphprotocol/graph-ts';
 
 
+/// @notice Checks if Transfer is a deposit or withdrawal based on from/to addresses
+/// @param from the from address
+/// @param to the to address
+/// @return - True if deposit (from = 0x) or withdrawal (to = 0x) from a Vault contract
+///         - False otherwise
 export const isDepositOrWithdrawal = (
     from: Address,
     to: Address,
@@ -31,7 +50,7 @@ export const isDepositOrWithdrawal = (
     }
 }
 
-// Contract addresses
+// Contract addresses conversion (from string to Address)
 export const vaultDai_1_0_Address = Address.fromString(contracts.AVAXDAIVault_v1_0_Address);
 export const vaultUsdc_1_0_Address = Address.fromString(contracts.AVAXUSDCVault_v1_0_Address);
 export const vaultUsdt_1_0_Address = Address.fromString(contracts.AVAXUSDTVault_v1_0_Address);

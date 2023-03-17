@@ -1,13 +1,27 @@
+// SPDX-License-Identifier: AGPLv3
+
+//  ________  ________  ________
+//  |\   ____\|\   __  \|\   __  \
+//  \ \  \___|\ \  \|\  \ \  \|\  \
+//   \ \  \  __\ \   _  _\ \  \\\  \
+//    \ \  \|\  \ \  \\  \\ \  \\\  \
+//     \ \_______\ \__\\ _\\ \_______\
+//      \|_______|\|__|\|__|\|_______|
+
+// gro protocol - avalanche subgraph: https://github.com/groLabs/gro-subgraph-avalanche
+
+/// @notice Contains all constant values used across the different subgraph functions
+
+import {
+    Bytes,
+    BigDecimal,
+} from "@graphprotocol/graph-ts";
 import {
     Num,
     Addr,
     Token,
     TxType,
 } from '../types/constants';
-import {
-    Bytes,
-    BigDecimal,
-} from "@graphprotocol/graph-ts";
 
 
 // Numbers
